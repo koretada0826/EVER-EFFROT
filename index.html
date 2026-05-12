@@ -7,7 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Reggae+One&family=RocknRoll+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260512j">
+<link rel="stylesheet" href="css/style.css?v=20260513q">
+<link rel="stylesheet" href="css/mobile.css?v=20260513q">
 </head>
 <body>
 
@@ -19,6 +20,10 @@
     <span class="num">R</span><span class="num">　</span>
     <span class="num">E</span><span class="num">F</span><span class="num">F</span>
     <span class="num">O</span><span class="num">R</span><span class="num">T</span>
+  </div>
+  <div class="loader-progress">
+    <div class="loader-percent" id="loaderPercent">0%</div>
+    <div class="loader-bar"><div class="loader-bar-fill" id="loaderBarFill"></div></div>
   </div>
 </div>
 
@@ -46,8 +51,9 @@
     </div>
   </div>
 
-  <!-- 左サイド：ロゴ＋縦ナビ -->
-  <aside class="side-left">
+  <!-- 左サイド：ロゴ＋縦ナビ（モバイル時はドロワーとして使用） -->
+  <aside class="side-left" id="sideLeftDrawer">
+    <button type="button" class="mobile-drawer-close" id="mobileDrawerClose" aria-label="メニューを閉じる">×</button>
     <h1 class="brand-block">
       <a href="#" class="brand-link">
         <img src="images/logo.png" alt="株式会社 Everエフォート" class="brand-logo">
@@ -73,8 +79,12 @@
 
   <!-- 中央：縦書きキャッチ＋ヒーロー -->
   <div class="stage-center">
+    <!-- モバイル限定: MENUボタン（FV右上） -->
+    <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="メニューを開く">
+      <span class="mobile-menu-btn-inner">MENU</span>
+    </button>
     <p class="vertical-copy">
-      <span class="vline">挑戦の歴史に…</span>
+      <span class="vline">挑戦の歴史に<span class="v-ellipsis">…</span></span>
       <span class="vline">また1ページ。</span>
     </p>
     <div class="hero-art">
@@ -84,6 +94,8 @@
            data-mascot-frames="images/mascot_1.png,images/mascot_2.png,images/mascot_3.png,images/mascot_4.png,images/mascot_5.png,images/mascot_6.png">
     </div>
   </div>
+  <!-- モバイル限定: ドロワー背景オーバーレイ -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
 
   <!-- 右サイド：バナーカルーセル -->
   <aside class="side-right">
@@ -392,7 +404,7 @@
 <!-- ============ フッター ============ -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <p class="brand"><a href="#"><span class="brand-kanji">炎</span><span class="brand-en">EVER EFFORT</span></a></p>
+    <p class="brand"><a href="#"><img src="images/footer-logo.png" alt="株式会社 Everエフォート / EVER EFFORT" class="footer-logo-img"></a></p>
     <ul class="footer-nav">
       <li><a href="#company">Company</a></li>
       <li><a href="#philosophy">Philosophy</a></li>
@@ -405,6 +417,6 @@
   <button id="topBtn" aria-label="ページトップへ"><span>▲</span><small>TOP</small></button>
 </footer>
 
-<script src="js/main.js?v=20260512j"></script>
+<script src="js/main.js?v=20260513q"></script>
 </body>
 </html>

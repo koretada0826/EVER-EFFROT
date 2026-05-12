@@ -1,0 +1,909 @@
+/* ============================================================
+   Mobile-only stylesheet (max-width: 768px)
+   PC styles in style.css are untouched at >= 769px.
+   ============================================================ */
+
+/* PC では MENU ボタン・ドロワー要素は非表示（モバイル時のみ表示） */
+.mobile-menu-btn,
+.mobile-drawer-overlay,
+.mobile-drawer-close {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  /* ── 横スクロール完全封鎖 + スクロールバー幅由来の右側ズレを根絶 ── */
+  html {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-x: none !important;
+    /* スクロールバーで右側が削れて非対称になるのを防ぐ */
+    scrollbar-width: none !important;          /* Firefox */
+    -ms-overflow-style: none !important;       /* IE/Edge legacy */
+  }
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none !important;                  /* Chrome/Safari/Edge */
+    width: 0 !important;
+    height: 0 !important;
+  }
+  body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-x: none !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  *:not(html):not(body) {
+    min-width: 0;
+    max-width: 100%;
+  }
+  img, video, iframe, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+  /* 主要コンテナを viewport 幅に固定 + 内部の溢れを断つ */
+  body > *,
+  section, header, footer, aside, main, nav, article, div {
+    max-width: 100vw !important;
+    overflow-x: hidden;
+  }
+  /* FV 装飾レイヤー（カモメは translateX(110vw)、火の粉は translateX(30px) でビューポート外へ） */
+  .stage-bg, .sky, .embers, .leaves, .ember, .leaf, .pagoda,
+  .sun, .mountain, .mountain-back, .mountain-front, .ground {
+    display: none !important;
+  }
+  /* PC で absolute right の装飾を画面内に収める */
+  .corp-logo {
+    right: 8px !important;
+    max-width: 90vw;
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    padding: 3px 8px !important;
+  }
+  /* PC で width: 18vw など viewport 単位の装飾線 */
+  .catchphrase .rule { width: 50% !important; max-width: 200px !important; }
+  /* PC で inset: -12% -10% で .catchphrase 外に滲み出る ::before */
+  .catchphrase::before {
+    inset: -8% 0 -8% 0 !important;
+  }
+  /* ローダー文字（PC: 64px×11文字 = 570px）が幅を超えるので縮小 */
+  #loader { overflow: hidden !important; gap: 24px !important; }
+  .loader-inner {
+    font-size: 32px !important;
+    letter-spacing: 0 !important;
+    gap: 0 !important;
+    max-width: 100vw;
+    padding: 0 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .loader-inner .num { margin: 0 1px !important; }
+  .loader-inner .num:last-child { margin-right: 0 !important; }
+  .loader-inner .num:first-child { margin-left: 0 !important; }
+  .loader-progress { width: min(280px, 80vw) !important; gap: 8px !important; }
+  .loader-bar { height: 8px !important; }
+  .loader-percent { font-size: 22px !important; letter-spacing: 2px !important; }
+  /* sec-title の letter-spacing で発生する右側の余白を無効化 */
+  .sec-title { padding-right: 0; }
+  .sec-title span { letter-spacing: inherit; }
+
+  /* ============ Stage ============ */
+  .stage {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background: #1a0606;
+    /* PC の grid-template-columns: 200px 1fr 300px を無効化 */
+    grid-template-columns: none;
+    grid-template-rows: none;
+  }
+  /* ステージ共通背景はヒーロー領域だけに限定するため非表示 */
+  .stage-bg { display: none !important; }
+  .sky { display: none !important; }
+
+  /* ============ MENUボタン（FV右上、PC版vnav風デザイン） ============ */
+  .mobile-menu-btn {
+    display: inline-flex;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 40;
+    padding: 10px 28px;
+    min-width: 120px;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(255,210,80,0.22), transparent 65%),
+      linear-gradient(180deg, #5a0a0a 0%, #2a0404 100%);
+    border: 2px solid #ffb84a;
+    box-shadow:
+      0 2px 0 #1a0000,
+      0 0 16px rgba(255,140,30,0.6),
+      inset 0 0 12px rgba(255,140,30,0.45);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-family: "Reggae One", "Bangers", sans-serif;
+    line-height: 1;
+  }
+  .mobile-menu-btn-inner {
+    display: inline-block;
+    font-family: "Reggae One", "Bangers", sans-serif;
+    font-size: 22px;
+    letter-spacing: 5px;
+    color: #ffe98a;
+    -webkit-text-stroke: 0;
+    text-shadow:
+      -1.5px -1.5px 0 #1a0000,
+       1.5px -1.5px 0 #1a0000,
+      -1.5px  1.5px 0 #1a0000,
+       1.5px  1.5px 0 #1a0000,
+       0 2px 0 #6a0a0a,
+       0 0 8px rgba(255,140,30,0.7);
+  }
+  .mobile-menu-btn:active { transform: translateY(1px); box-shadow: 0 1px 0 #1a0000, 0 0 10px rgba(255,140,30,0.55), inset 0 0 10px rgba(255,140,30,0.4); }
+
+  /* ============ ドロワー（右からスライドイン） ============ */
+  .mobile-drawer-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+  }
+  .mobile-drawer-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .mobile-drawer-close {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #ffb84a;
+    background: linear-gradient(180deg, #5a0a0a, #2a0404);
+    color: #ffd54a;
+    font-size: 22px;
+    font-family: sans-serif;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 0 0 8px rgba(255,140,30,0.6);
+  }
+
+  /* side-left をドロワー化（右からスライドイン） */
+  .side-left {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto !important;
+    z-index: 100;
+    grid-column: unset;
+    grid-row: unset;
+    width: 82vw;
+    max-width: 340px;
+    height: 100vh;
+    max-height: 100vh;
+    flex-direction: column;
+    padding: 56px 18px 18px;
+    background: linear-gradient(180deg, #1a0404 0%, #100202 100%);
+    border-right: none;
+    border-left: 2px solid #ffb84a;
+    border-top: none;
+    border-bottom: none;
+    box-shadow: -6px 0 24px rgba(0,0,0,0.7);
+    order: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: transform .3s ease;
+  }
+  .side-left.is-open {
+    transform: translateX(0);
+  }
+  .brand-block {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    text-align: center;
+  }
+  .brand-logo { max-width: 200px; }
+  .vnav { width: 100%; padding: 8px 0 0; }
+  /* ハンバーガー風: 縦1列で項目を並べる */
+  .vnav ul {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    gap: 10px !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .vnav li { list-style: none; width: 100%; }
+  .vnav a {
+    width: 100%;
+    padding: 14px 18px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .vnav a span {
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+  /* 縦並びでは br を有効に戻す（複数行のラベルが自然に折り返せるように） */
+  .vnav a span br { display: inline; }
+  .sns-left {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px 0 0;
+    border-top: 1px solid rgba(255,184,74,0.3);
+    border-left: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 14px;
+  }
+  .sns-left li a {
+    width: 36px; height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* 中央：ヒーロー（モバイル用に背景画像をスコープ）
+     上を切り取って詰める：min-height を 52vh に、bg は center bottom 固定 */
+  .stage-center {
+    position: relative;
+    grid-column: unset;
+    grid-row: unset;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 52vh;
+    height: 52vh;
+    padding: 12px 8px 0;
+    order: 1;
+    overflow: hidden;
+    background:
+      url('../images/hero-bg-mobile.png') center bottom / cover no-repeat,
+      linear-gradient(180deg, #2a0808 0%, #c44a20 50%, #1a0606 100%);
+    box-shadow:
+      inset 0 40px 40px -20px rgba(20,2,2,0.55),
+      inset 0 -40px 40px -20px rgba(20,2,2,0.45);
+  }
+  /* 縦書き→横書き2行に変更。位置は FV 左上 */
+  .vertical-copy {
+    position: absolute;
+    left: 14px;
+    right: auto;
+    top: 14px;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    text-align: left;
+    font-size: 20px;
+    letter-spacing: 2px;
+    line-height: 1.3;
+    text-shadow:
+      -1px -1px 0 #fff, 1px -1px 0 #fff,
+      -1px  1px 0 #fff,  1px  1px 0 #fff,
+      3px 3px 0 #c8231c;
+    z-index: 3;
+  }
+  .vertical-copy .vline { display: block; }
+  /* モバイルは横書きなので「…」の回転を解除 */
+  .vertical-copy .v-ellipsis { transform: none; display: inline; }
+  .hero-art {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  /* キャラクターはやや下＆大きめ。ぽよん(-38px)でもテキストに被らないよう余裕を取る。
+     FV下部のカルーセル(高さ約114px)とテキストに被らないよう max-height を抑える */
+  .hero-image {
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-top: 80px;
+    margin-bottom: 0;
+    max-width: 56%;
+    max-height: 28vh;
+    width: auto;
+    height: auto;
+  }
+
+  /* ============ 右サイド: FV下部にオーバーレイ表示する横スクロールカルーセル ============
+     .side-right は .stage の子要素のため、.stage を基準に top で stage-center の底辺に揃える。
+     stage-center は 52vh、サイドライト高さ ≒ 114px (viewport 96 + padding 18) */
+  .side-right {
+    position: absolute !important;
+    top: calc(52vh - 114px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    z-index: 8;
+    grid-column: unset;
+    grid-row: unset;
+    padding: 8px 6px 10px;
+    background: linear-gradient(180deg, rgba(20,4,4,0) 0%, rgba(20,4,4,0.55) 35%, rgba(20,4,4,0.82) 100%);
+    border-top: none;
+    border-left: none;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px;
+    order: 0;
+    overflow: visible !important;
+  }
+  /* 矢印ボタン: 上下→左右に方向転換
+     ▲ (U+25B2 上向き) + rotate(-90deg) = ◀ 左向き
+     ▼ (U+25BC 下向き) + rotate(-90deg) = ▶ 右向き
+     どちらも反時計回り90度で正しい向きになる */
+  .carousel-nav {
+    display: flex !important;
+    width: 46px !important;
+    height: 46px !important;
+    margin: 0 !important;
+    flex: 0 0 46px !important;
+    z-index: 9;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-nav-up { margin-right: 2px !important; }
+  .carousel-nav-down { margin-left: 2px !important; }
+  .carousel-arrow {
+    font-size: 20px !important;
+    line-height: 1 !important;
+    display: inline-block !important;
+  }
+  .carousel-nav-up .carousel-arrow {
+    transform: rotate(-90deg) !important;   /* ▲ → ◀ 左 */
+  }
+  .carousel-nav-down .carousel-arrow {
+    transform: rotate(-90deg) !important;   /* ▼ → ▶ 右 */
+  }
+  /* ビューポート: 横スクロール領域 */
+  .carousel-viewport {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: 96px !important;
+    max-height: 96px !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    margin: 0 !important;
+  }
+  /* トラック: flex 横並び + スクロールスナップ */
+  .carousel-track {
+    position: relative !important;
+    inset: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0 !important;
+    height: 100% !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+    gap: 8px !important;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  /* バナー: 横並びの個別アイテム（PC の absolute positioning を解除） */
+  .carousel-track .banner {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+    flex: 0 0 78% !important;
+    width: 78% !important;
+    max-width: 78% !important;
+    min-width: 0;
+    min-height: 80px !important;
+    height: 100%;
+    padding: 8px 10px !important;
+    margin: 0 !important;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .banner-title { font-size: 13px; letter-spacing: 1px; }
+  .banner-sub { font-size: 10px; }
+
+  /* 更新情報 */
+  .update-bar {
+    grid-column: unset;
+    grid-row: unset;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(180deg, #1a0404 0%, #0e0202 100%);
+    border-top: 2px solid #ffb84a;
+    order: 4;
+  }
+  .update-label {
+    align-self: flex-start;
+    font-size: 16px;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+  }
+  .update-list {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+    column-gap: 0;
+  }
+  .update-list li {
+    font-size: 13px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .update-list time { font-size: 12px; flex: 0 0 auto; }
+  /* PC の white-space: nowrap + 長い日本語リンクが li 自然幅を viewport 超に広げる元凶。
+     モバイルでは折り返しを許可して根本解決。 */
+  .update-list a {
+    font-size: 13px;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: clip;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* ============ Section共通 ============ */
+  .sec-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+    margin: 32px 0 18px;
+  }
+  .sec-title::before { font-size: 12px; }
+  section { padding-left: 14px; padding-right: 14px; }
+
+  /* ============ セクション共通: viewport 幅を物理的に強制 ============
+     `width: 100%` ではなく `100vw` を直指定して、親要素の幅問題を完全に回避 */
+  .info-panels,
+  .feature-panels,
+  .news,
+  .company-info,
+  .philosophy,
+  .content-blocks,
+  .recruit-cta,
+  .contact,
+  .site-footer {
+    display: block !important;
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    box-sizing: border-box !important;
+    text-align: center;
+  }
+  /* 内側コンテナ: viewport - 28px(padding) で確定 */
+  .panels-grid,
+  .feature-grid,
+  .features-grid,
+  .news-list,
+  .company-info dl,
+  .company-inner,
+  .philosophy-inner,
+  .grid,
+  .cta-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+  /* カード: 内側コンテナ幅と同じ */
+  .info-panel,
+  .feature-panel,
+  .card,
+  .block,
+  .news-list > li {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ============ 3パネル (info-panels) ============ */
+  .info-panels { padding-top: 30px !important; padding-bottom: 10px !important; }
+  .panels-grid {
+    gap: 16px;
+  }
+  .info-panel-title h3 { font-size: 18px; }
+  .info-panel-body { padding: 14px 14px 16px; text-align: center; }
+
+  /* info-list（事業内容など）: 装飾◆を消して文字を完全中央寄せ */
+  .info-list { padding-left: 0 !important; list-style: none; }
+  .info-list li {
+    font-size: 14px;
+    padding: 10px 12px !important;
+    text-align: center;
+    list-style: none;
+  }
+  .info-list li::before { display: none !important; }
+
+  .info-lead { font-size: 14px; text-align: center; }
+
+  /* info-spec（会社データ dt/dd）: 1カラム＋中央寄せ */
+  .info-spec { text-align: center; }
+  .info-spec > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,184,74,0.18);
+  }
+  .info-spec dt,
+  .info-spec dd {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* info-flow（採用フロー）: 中央寄せ縦並び */
+  .info-flow { padding-left: 0 !important; }
+  .info-flow li {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .info-flow li::after { left: 50% !important; transform: translateX(-50%); }
+
+  /* ============ 2x2 (feature-panels) ============ */
+  .feature-panels { padding-top: 20px !important; padding-bottom: 20px !important; }
+  .feature-grid,
+  .features-grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 14px;
+    grid-template-columns: none !important;
+  }
+  .feature-panel { width: 100%; padding: 18px; }
+  .feature-panel h3 { font-size: 18px; }
+  .feature-panel p { font-size: 13px; text-align: center; }
+
+  /* feature-panel 内部のリスト類: 全部中央寄せ */
+  .voice-list { padding-left: 0 !important; list-style: none; text-align: center; }
+  .voice-list li {
+    list-style: none;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(255,184,74,0.18);
+  }
+  .voice-list li:last-child { border-bottom: none; }
+  .voice-list .voice-no,
+  .voice-list .voice-meta {
+    display: block;
+    text-align: center;
+  }
+  .voice-list p {
+    text-align: center;
+    margin: 6px auto;
+    font-size: 13px;
+    line-height: 1.55;
+    /* 2行に収まる時は左右均等になるようバランス改行 */
+    text-wrap: balance;
+    word-break: auto-phrase;
+    overflow-wrap: anywhere;
+    max-width: 92%;
+  }
+
+  .career-ladder { padding-left: 0 !important; list-style: none; text-align: center; }
+  .career-ladder li {
+    list-style: none;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* 数字で見るエバー: 2x2グリッド、全カードを同サイズに統一
+     1行目に数字+単位を横並び、2行目にラベル */
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    justify-items: stretch !important;
+    align-items: stretch !important;
+    width: 100% !important;
+  }
+  .stat {
+    display: grid !important;
+    grid-template-columns: auto auto !important;
+    grid-template-rows: auto auto !important;
+    grid-template-areas:
+      "num unit"
+      "label label" !important;
+    justify-content: center !important;
+    align-items: end !important;
+    column-gap: 4px !important;
+    row-gap: 6px !important;
+    width: 100% !important;
+    min-height: 100px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 16px 8px !important;
+  }
+  .stat-num {
+    grid-area: num;
+    font-size: 32px !important;
+    line-height: 1;
+    align-self: end;
+  }
+  .stat-unit {
+    grid-area: unit;
+    font-size: 13px !important;
+    align-self: end;
+    padding-bottom: 4px;
+  }
+  .stat-label {
+    grid-area: label;
+    font-size: 11px !important;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(255,184,74,0.35);
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  /* トップメッセージ: 中央寄せ + 装飾クォートを縮小 */
+  .message-quote {
+    text-align: center;
+    padding: 14px 14px !important;
+    margin: 0 !important;
+  }
+  .message-quote p { text-align: center; margin-left: auto !important; margin-right: auto !important; }
+  .message-quote footer {
+    justify-content: center;
+    align-items: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  /* 装飾用の巨大な " " マークを縮小（PC は 64px だが視覚的に左に偏るため） */
+  .message-quote::before,
+  .message-quote::after {
+    font-size: 28px !important;
+  }
+  .message-quote::before { top: 2px !important; left: 4px !important; }
+  .message-quote::after  { bottom: -8px !important; right: 6px !important; }
+
+  /* タイトル装飾は中央配置を維持 */
+  .info-panel-title { justify-content: center; }
+
+  /* CTAボタンも中央 */
+  .info-cta { margin-left: auto; margin-right: auto; }
+
+  /* ============ News ============ */
+  .news { padding-top: 30px !important; padding-bottom: 30px !important; }
+  .news-list { font-size: 14px; }
+  .news-list li {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 4px;
+    /* 左揃えだが、ニュースボックスの内側に余白を確保して詰まりすぎを回避 */
+    padding: 14px 16px 14px 22px !important;
+  }
+
+  /* ============ Company info ============ */
+  .company-info { padding-top: 30px !important; padding-bottom: 30px !important; }
+  .company-info dl {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .company-info dt {
+    background: rgba(255,184,74,0.1);
+    padding: 8px 12px;
+    border-bottom: none;
+    font-size: 13px;
+  }
+  .company-info dd {
+    padding: 10px 12px 14px;
+    margin: 0;
+    border-bottom: 1px solid rgba(255,184,74,0.2);
+    font-size: 14px;
+  }
+
+  /* ============ Philosophy ============ */
+  .philosophy { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .catchphrase {
+    font-size: clamp(36px, 14vw, 56px);
+    letter-spacing: 8px;
+    line-height: 1.1;
+    gap: 2px;
+    margin: 0 auto 28px;
+  }
+  .catchphrase .line { padding-left: 8px; }
+  .catchphrase .rule { width: 60vw; margin: 10px 0; }
+  .lead-text { font-size: 14px; line-height: 1.9; }
+
+  /* ============ Content blocks ============ */
+  .content-blocks { padding-top: 0 !important; padding-bottom: 50px !important; }
+  .grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card { padding: 18px; }
+  .card h3 { font-size: 17px; }
+  .card p, .card li { font-size: 13px; }
+
+  /* ============ Special / Recruit / Contact ============ */
+  .recruit-cta, .contact { padding-top: 30px !important; padding-bottom: 30px !important; }
+  .btn-large {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  .lead { font-size: 14px; line-height: 1.8; }
+
+  /* ============ Footer ============ */
+  .site-footer { padding: 24px 14px; }
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .footer-logo-img {
+    max-width: 260px;
+    max-height: 88px;
+    width: 78%;
+  }
+  /* Footer nav: ピラミッド配置 3+2（6カラムグリッドで上段は col1-2/3-4/5-6、下段は col2-3/4-5） */
+  .footer-nav {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 4px;
+    row-gap: 10px;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto 20px;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  .footer-nav li {
+    list-style: none;
+    text-align: center;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .footer-nav li:nth-child(1) { grid-column: 1 / span 2; }
+  .footer-nav li:nth-child(2) { grid-column: 3 / span 2; }
+  .footer-nav li:nth-child(3) { grid-column: 5 / span 2; }
+  .footer-nav li:nth-child(4) { grid-column: 2 / span 2; }
+  .footer-nav li:nth-child(5) { grid-column: 4 / span 2; }
+  .footer-nav a {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  /* ============ アニメーション要素は控えめに ============ */
+  .leaves, .embers { opacity: 0.6; }
+  .pagoda { display: none; }
+
+  /* ============ Loader ============ */
+  #loader .loader-inner { font-size: 28px; }
+
+  /* ============ Contact form (contact.html) ============ */
+  .cf-header { padding: 10px 12px; }
+  .cf-logo { height: 32px; }
+  .cf-nav a { font-size: 12px; padding: 6px 12px; }
+  .cf-main { padding: 24px 10px 40px; }
+  .cf-inner { padding: 24px 16px; border-radius: 8px; }
+  .cf-title-en { font-size: 36px; letter-spacing: 3px; }
+  .cf-title-jp { font-size: 14px; letter-spacing: 4px; }
+  .cf-lead { font-size: 13px; line-height: 1.8; }
+  .cf-steps { flex-wrap: wrap; }
+  .cf-steps li {
+    flex: 1 1 33%;
+    padding: 8px 6px;
+    font-size: 11px;
+    justify-content: center;
+  }
+  .cf-steps .num { font-size: 13px; }
+  .cf-steps .label { letter-spacing: 1px; }
+  .cf-form input,
+  .cf-form select,
+  .cf-form textarea {
+    font-size: 16px; /* iOS auto-zoom prevention */
+    padding: 12px;
+  }
+  .cf-radio-group { flex-direction: column; gap: 10px; }
+  .cf-radio { width: 100%; justify-content: flex-start; }
+  .cf-actions { flex-direction: column-reverse; gap: 10px; }
+  .cf-btn { width: 100%; padding: 14px 20px; font-size: 15px; }
+}
+
+/* ============ さらに小型 (max-width: 420px) ============ */
+@media (max-width: 420px) {
+  /* 縦1列レイアウトを維持 */
+  .vnav a span { font-size: 15px; }
+  .vnav a { padding: 12px 14px; min-height: 50px; }
+  .brand-logo { max-width: 160px; }
+  .vertical-copy { font-size: 18px; letter-spacing: 1.5px; left: 12px; top: 12px; }
+  .stage-center { min-height: 50vh; height: 50vh; padding-bottom: 0; }
+  .hero-image { max-width: 56%; max-height: 32vh; margin-top: 95px; margin-bottom: -8px; }
+  .side-right { top: calc(50vh - 110px) !important; }
+  .mobile-menu-btn-inner { font-size: 20px; letter-spacing: 4px; }
+  .mobile-menu-btn { padding: 8px 22px; min-width: 108px; }
+  .sec-title { font-size: 26px; letter-spacing: 1.5px; }
+  .catchphrase {
+    font-size: clamp(30px, 13vw, 42px);
+    letter-spacing: 6px;
+  }
+  .info-panel-title h3 { font-size: 16px; }
+  .feature-panel h3 { font-size: 16px; }
+  .card h3 { font-size: 15px; }
+  .update-label { font-size: 14px; letter-spacing: 1.5px; padding: 4px 10px; }
+  .update-list li { font-size: 12px; gap: 8px; }
+  .update-list time { font-size: 11px; }
+  .update-list a { font-size: 12px; }
+}
