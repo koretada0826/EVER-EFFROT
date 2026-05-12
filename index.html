@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVER EFFORT | 株式会社エバーエフォート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Reggae+One&family=RocknRoll+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260512j">
+</head>
+<body>
+
+<!-- ============ ローディング ============ -->
+<div id="loader">
+  <div class="loader-fire"></div>
+  <div class="loader-inner">
+    <span class="num">E</span><span class="num">V</span><span class="num">E</span>
+    <span class="num">R</span><span class="num">　</span>
+    <span class="num">E</span><span class="num">F</span><span class="num">F</span>
+    <span class="num">O</span><span class="num">R</span><span class="num">T</span>
+  </div>
+</div>
+
+<!-- ============ ステージ：左ナビ＋中央ヒーロー＋右バナー ============ -->
+<section class="stage">
+
+  <!-- 背景（夕焼け空＋山＋紅葉＋炎） -->
+  <div class="stage-bg">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <div class="mountain mountain-back"></div>
+    <div class="mountain mountain-front"></div>
+    <div class="pagoda"></div>
+    <div class="ground"></div>
+    <div class="embers">
+      <span class="ember"></span><span class="ember"></span><span class="ember"></span>
+      <span class="ember"></span><span class="ember"></span><span class="ember"></span>
+      <span class="ember"></span><span class="ember"></span><span class="ember"></span>
+      <span class="ember"></span><span class="ember"></span><span class="ember"></span>
+    </div>
+    <div class="leaves">
+      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+      <span class="leaf"></span><span class="leaf"></span><span class="leaf"></span>
+      <span class="leaf"></span><span class="leaf"></span>
+    </div>
+  </div>
+
+  <!-- 左サイド：ロゴ＋縦ナビ -->
+  <aside class="side-left">
+    <h1 class="brand-block">
+      <a href="#" class="brand-link">
+        <img src="images/logo.png" alt="株式会社 Everエフォート" class="brand-logo">
+      </a>
+    </h1>
+    <nav class="vnav">
+      <ul>
+        <li><a href="#company"><span>会社情報</span></a></li>
+        <li><a href="#philosophy"><span>企業理念</span></a></li>
+        <li><a href="#special"><span>特集<br>コンテンツ</span></a></li>
+        <li><a href="#leaders"><span>会社の<br>リーダー紹介</span></a></li>
+        <li><a href="#recruit"><span>採用情報</span></a></li>
+        <li><a href="#contact"><span>お問合せ</span></a></li>
+      </ul>
+    </nav>
+    <ul class="sns-left">
+      <li><a href="#" aria-label="X">𝕏</a></li>
+      <li><a href="#" aria-label="Facebook">f</a></li>
+      <li><a href="#" aria-label="Instagram">IG</a></li>
+      <li><a href="#" aria-label="LINE">L</a></li>
+    </ul>
+  </aside>
+
+  <!-- 中央：縦書きキャッチ＋ヒーロー -->
+  <div class="stage-center">
+    <p class="vertical-copy">
+      <span class="vline">挑戦の歴史に…</span>
+      <span class="vline">また1ページ。</span>
+    </p>
+    <div class="hero-art">
+      <img src="images/mascot_1.png"
+           alt="EVER EFFORT マスコット"
+           class="hero-image"
+           data-mascot-frames="images/mascot_1.png,images/mascot_2.png,images/mascot_3.png,images/mascot_4.png,images/mascot_5.png,images/mascot_6.png">
+    </div>
+  </div>
+
+  <!-- 右サイド：バナーカルーセル -->
+  <aside class="side-right">
+    <button class="carousel-nav carousel-nav-up" aria-label="前へ" type="button">
+      <span class="carousel-fire"></span>
+      <span class="carousel-arrow">▲</span>
+    </button>
+    <div class="carousel-viewport">
+      <div class="carousel-track">
+        <a href="#" class="banner">
+          <span class="banner-title">採用情報</span>
+          <span class="banner-sub">エントリー受付中</span>
+        </a>
+        <a href="#" class="banner">
+          <span class="banner-title">社員インタビュー</span>
+          <span class="banner-sub">リアルなキャリアストーリー</span>
+        </a>
+        <a href="#" class="banner">
+          <span class="banner-title">エバーブログ</span>
+          <span class="banner-sub">社内文化を発信中</span>
+        </a>
+        <a href="#" class="banner">
+          <span class="banner-title">数字で見るエバー</span>
+          <span class="banner-sub">DATA&FACT</span>
+        </a>
+        <a href="#" class="banner">
+          <span class="banner-title">スペシャル動画</span>
+          <span class="banner-sub">特別映像配信中</span>
+        </a>
+      </div>
+    </div>
+    <button class="carousel-nav carousel-nav-down" aria-label="次へ" type="button">
+      <span class="carousel-fire"></span>
+      <span class="carousel-arrow">▼</span>
+    </button>
+  </aside>
+
+  <!-- 下部：更新情報バー -->
+  <div class="update-bar">
+    <span class="update-label">更新情報</span>
+    <ul class="update-list">
+      <li><time datetime="2026-05-12">2026.05.12</time><a href="#">公式サイトをリニューアルしました</a></li>
+      <li><time datetime="2026-04-22">2026.04.22</time><a href="#">2027年度新卒採用エントリー受付開始</a></li>
+      <li><time datetime="2026-04-08">2026.04.08</time><a href="#">夏季インターンシップ募集のお知らせ</a></li>
+      <li><time datetime="2026-03-19">2026.03.19</time><a href="#">大阪オフィスを移転しました</a></li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ============ 3パネルセクション ============ -->
+<section class="info-panels reveal">
+  <div class="panels-grid">
+
+    <article class="info-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>事業内容</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <ul class="info-list">
+          <li>コールセンター事業</li>
+          <li>訪問販売事業</li>
+          <li>アライアンス事業</li>
+          <li>派遣・職業紹介事業</li>
+          <li>コンサルティング事業</li>
+        </ul>
+        <p class="info-lead">変化に強く、挑戦を続ける組織。</p>
+      </div>
+      <a href="#special" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+    <article class="info-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>会社データ</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <dl class="info-spec">
+          <div><dt>設立</dt><dd>2013年</dd></div>
+          <div><dt>資本金</dt><dd>4,300万円</dd></div>
+          <div><dt>従業員数</dt><dd>160名</dd></div>
+          <div><dt>所在地</dt><dd>東京都豊島区</dd></div>
+        </dl>
+      </div>
+      <a href="#company" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+    <article class="info-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>採用フロー</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <ol class="info-flow">
+          <li><span class="step-num">01</span><span class="step-text">エントリー</span></li>
+          <li><span class="step-num">02</span><span class="step-text">書類選考</span></li>
+          <li><span class="step-num">03</span><span class="step-text">面接</span></li>
+          <li><span class="step-num">04</span><span class="step-text">内定</span></li>
+        </ol>
+      </div>
+      <a href="#recruit" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 4パネルセクション(2×2) ============ -->
+<section class="feature-panels reveal">
+  <div class="feature-grid">
+
+    <article class="info-panel feature-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>トップメッセージ</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <blockquote class="message-quote">
+          <p>「挑戦の歴史に、また一ページ。<br>変化を恐れず、進化し続けよ。」</p>
+          <footer><span class="role">代表取締役社長</span><span class="name">青木 一平</span></footer>
+        </blockquote>
+      </div>
+      <a href="#philosophy" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+    <article class="info-panel feature-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>社員インタビュー</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <ul class="voice-list">
+          <li>
+            <span class="voice-no">VOICE 01</span>
+            <p>「研修が手厚く、未経験でも安心して成長できました。」</p>
+            <span class="voice-meta">入社2年目 ／ 営業</span>
+          </li>
+          <li>
+            <span class="voice-no">VOICE 02</span>
+            <p>「裁量が大きく、20代でリーダーを任せてもらえました。」</p>
+            <span class="voice-meta">入社4年目 ／ マネージャー</span>
+          </li>
+        </ul>
+      </div>
+      <a href="#special" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+    <article class="info-panel feature-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>キャリア・研修</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <ul class="career-ladder">
+          <li><span class="ladder-rank">STAGE 1</span><span class="ladder-text">新人研修・OJT</span></li>
+          <li><span class="ladder-rank">STAGE 2</span><span class="ladder-text">専門スキル研修</span></li>
+          <li><span class="ladder-rank">STAGE 3</span><span class="ladder-text">リーダー育成プログラム</span></li>
+          <li><span class="ladder-rank">STAGE 4</span><span class="ladder-text">マネジメント研修</span></li>
+        </ul>
+      </div>
+      <a href="#special" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+    <article class="info-panel feature-panel">
+      <header class="info-panel-title">
+        <span class="title-deco title-deco-l"></span>
+        <h3>数字で見るエバー</h3>
+        <span class="title-deco title-deco-r"></span>
+      </header>
+      <div class="info-panel-body">
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-num">160</span><span class="stat-unit">名</span><span class="stat-label">従業員数</span></div>
+          <div class="stat"><span class="stat-num">13</span><span class="stat-unit">期</span><span class="stat-label">設立から</span></div>
+          <div class="stat"><span class="stat-num">6</span><span class="stat-unit">事業</span><span class="stat-label">展開領域</span></div>
+          <div class="stat"><span class="stat-num">4,300</span><span class="stat-unit">万円</span><span class="stat-label">資本金</span></div>
+        </div>
+      </div>
+      <a href="#company" class="info-cta"><span>詳しくはこちら</span><i>▶</i></a>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="news reveal">
+  <h2 class="sec-title" data-jp="お知らせ"><span>NEWS</span></h2>
+  <ul class="news-list">
+    <li><time datetime="2026-05-01">2026.05.01</time><span class="tag tag-update">UPDATE</span><a href="#">公式サイトをリニューアルしました</a></li>
+    <li><time datetime="2026-04-20">2026.04.20</time><span class="tag tag-event">EVENT</span><a href="#">新卒採用説明会のお知らせ</a></li>
+    <li><time datetime="2026-04-01">2026.04.01</time><span class="tag tag-info">INFO</span><a href="#">新オフィス開設のお知らせ</a></li>
+  </ul>
+</section>
+
+<!-- ============ Company Info ============ -->
+<section class="company-info reveal" id="company">
+  <h2 class="sec-title" data-jp="会社情報"><span>COMPANY</span></h2>
+  <div class="company-inner">
+    <table class="company-table">
+      <tbody>
+        <tr><th>会社名</th><td>株式会社Everエフォート（エバーエフォート）</td></tr>
+        <tr><th>所在地</th><td>東京都豊島区東池袋1丁目34番5号 いちご東池袋ビル4階</td></tr>
+        <tr><th>設立</th><td>2013年4月2日</td></tr>
+        <tr><th>代表者</th><td>代表取締役社長　青木 一平</td></tr>
+        <tr><th>資本金</th><td>4,300万円</td></tr>
+        <tr><th>従業員数</th><td>160名</td></tr>
+        <tr><th>事業内容</th><td>
+          <ul class="biz-list">
+            <li>コールセンター事業</li>
+            <li>訪問販売事業</li>
+            <li>アライアンス事業</li>
+            <li>派遣事業</li>
+            <li>有料職業紹介事業</li>
+            <li>コンサルティング事業</li>
+          </ul>
+        </td></tr>
+        <tr><th>許可番号</th><td>労働者派遣事業：13-311793<br>有料人材紹介業：13-ユ-309899</td></tr>
+        <tr><th>連絡先</th><td>TEL：03-4218-7645<br>FAX：03-5928-4621</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ Philosophy ============ -->
+<section class="philosophy reveal" id="philosophy">
+  <h2 class="sec-title" data-jp="企業理念"><span>PHILOSOPHY</span></h2>
+  <div class="philosophy-inner">
+    <p class="catchphrase">
+      <span class="rule"></span>
+      <span class="line">挑戦は</span>
+      <span class="line">無限大</span>
+      <span class="rule"></span>
+    </p>
+    <p class="lead-text">
+      変化に強く、チャレンジ精神を忘れない。<br>
+      EVER EFFORTは、常に進化し続ける組織を目指します。
+    </p>
+  </div>
+</section>
+
+<!-- ============ コンテンツブロック ============ -->
+<section class="content-blocks reveal" id="special">
+  <h2 class="sec-title" data-jp="特集コンテンツ"><span>SPECIAL</span></h2>
+  <div class="grid">
+    <article class="block">
+      <figure data-label="MESSAGE"></figure>
+      <h3>トップメッセージ</h3>
+      <p>代表からのメッセージをお届けします。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+    <article class="block">
+      <figure data-label="CAREER"></figure>
+      <h3>キャリアアップ</h3>
+      <p>成長を支えるスキルアップ研修制度。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+    <article class="block">
+      <figure data-label="INTERVIEW"></figure>
+      <h3>社員インタビュー</h3>
+      <p>現役メンバーのリアルな声を発信。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+    <article class="block">
+      <figure data-label="24H"></figure>
+      <h3>社員密着24時</h3>
+      <p>1日の働き方をリアルに公開。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+    <article class="block">
+      <figure data-label="NUMBER"></figure>
+      <h3>数字で見るエバー</h3>
+      <p>データで知るEVER EFFORT。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+    <article class="block">
+      <figure data-label="WELFARE"></figure>
+      <h3>福利厚生</h3>
+      <p>働きやすさを追求する制度・サポート。</p>
+      <a href="#" class="btn"><span>MORE</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ Recruit CTA ============ -->
+<section class="recruit-cta reveal" id="recruit">
+  <h2 class="sec-title" data-jp="採用情報"><span>RECRUIT</span></h2>
+  <p class="lead">私たちと一緒に、未来を創りませんか？</p>
+  <div class="cta-buttons">
+    <a href="#entry" class="btn-large btn-primary"><span>新卒エントリー</span></a>
+    <a href="#entry" class="btn-large btn-secondary"><span>中途エントリー</span></a>
+  </div>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="contact reveal" id="contact">
+  <h2 class="sec-title" data-jp="お問合せ"><span>CONTACT</span></h2>
+  <p class="lead">ご質問・ご相談はお気軽にお問い合わせください。</p>
+  <a href="contact.html" class="btn-large btn-primary"><span>お問い合わせフォーム ＞</span></a>
+</section>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="brand"><a href="#"><span class="brand-kanji">炎</span><span class="brand-en">EVER EFFORT</span></a></p>
+    <ul class="footer-nav">
+      <li><a href="#company">Company</a></li>
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#special">Special</a></li>
+      <li><a href="#recruit">Recruit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="copy">&copy; 2026 EVER EFFORT Inc. All Rights Reserved.</p>
+  </div>
+  <button id="topBtn" aria-label="ページトップへ"><span>▲</span><small>TOP</small></button>
+</footer>
+
+<script src="js/main.js?v=20260512j"></script>
+</body>
+</html>

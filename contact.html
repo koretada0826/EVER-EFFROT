@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ | EVER EFFORT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Reggae+One&family=RocknRoll+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20260512h">
+<link rel="stylesheet" href="css/contact.css?v=20260512b">
+</head>
+<body class="page-contact">
+
+<!-- ============ ヘッダー ============ -->
+<header class="cf-header">
+  <a href="index.html" class="cf-brand">
+    <img src="images/logo.png" alt="株式会社 Everエフォート" class="cf-logo">
+  </a>
+  <nav class="cf-nav">
+    <a href="index.html">トップへ戻る</a>
+  </nav>
+</header>
+
+<!-- ============ メイン ============ -->
+<main class="cf-main">
+  <div class="cf-inner">
+
+    <h1 class="cf-title">
+      <span class="cf-title-en">CONTACT</span>
+      <span class="cf-title-jp">お問い合わせ</span>
+    </h1>
+    <p class="cf-lead">
+      ご質問・ご相談・お見積りのご依頼など、下記フォームよりお気軽にお問い合わせください。<br>
+      内容を確認のうえ、担当者より <strong>3営業日以内</strong> にご返信いたします。
+    </p>
+
+    <!-- ステップ -->
+    <ol class="cf-steps">
+      <li class="is-active"><span class="num">01</span><span class="label">入力</span></li>
+      <li><span class="num">02</span><span class="label">確認</span></li>
+      <li><span class="num">03</span><span class="label">送信完了</span></li>
+    </ol>
+
+    <form class="cf-form" action="#" method="post" novalidate>
+
+      <!-- お問い合わせ種別 -->
+      <div class="cf-field">
+        <label class="cf-label" for="inquiry-type">
+          お問い合わせ種別 <span class="cf-required">必須</span>
+        </label>
+        <div class="cf-select-wrap">
+          <select id="inquiry-type" name="inquiry_type" required>
+            <option value="">選択してください</option>
+            <option value="service">サービスについて</option>
+            <option value="recruit">採用について</option>
+            <option value="partnership">業務提携・取材依頼</option>
+            <option value="press">プレスリリース・メディア掲載</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- お名前 -->
+      <div class="cf-field">
+        <label class="cf-label" for="name">
+          お名前 <span class="cf-required">必須</span>
+        </label>
+        <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+      </div>
+
+      <!-- フリガナ -->
+      <div class="cf-field">
+        <label class="cf-label" for="kana">フリガナ</label>
+        <input type="text" id="kana" name="kana" placeholder="ヤマダ タロウ">
+      </div>
+
+      <!-- 会社名 -->
+      <div class="cf-field">
+        <label class="cf-label" for="company">会社名 / 団体名</label>
+        <input type="text" id="company" name="company" placeholder="株式会社○○">
+      </div>
+
+      <!-- 部署 -->
+      <div class="cf-field">
+        <label class="cf-label" for="department">部署 / 役職</label>
+        <input type="text" id="department" name="department" placeholder="営業部 マネージャー">
+      </div>
+
+      <!-- メール -->
+      <div class="cf-field">
+        <label class="cf-label" for="email">
+          メールアドレス <span class="cf-required">必須</span>
+        </label>
+        <input type="email" id="email" name="email" placeholder="example@evereffort.co.jp" required>
+      </div>
+
+      <!-- 電話 -->
+      <div class="cf-field">
+        <label class="cf-label" for="phone">電話番号</label>
+        <input type="tel" id="phone" name="phone" placeholder="03-1234-5678">
+      </div>
+
+      <!-- ご希望の連絡方法 -->
+      <div class="cf-field">
+        <span class="cf-label">ご希望の連絡方法</span>
+        <div class="cf-radio-group">
+          <label class="cf-radio">
+            <input type="radio" name="contact_method" value="email" checked>
+            <span>メール</span>
+          </label>
+          <label class="cf-radio">
+            <input type="radio" name="contact_method" value="phone">
+            <span>電話</span>
+          </label>
+          <label class="cf-radio">
+            <input type="radio" name="contact_method" value="either">
+            <span>どちらでも可</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 件名 -->
+      <div class="cf-field">
+        <label class="cf-label" for="subject">
+          件名 <span class="cf-required">必須</span>
+        </label>
+        <input type="text" id="subject" name="subject" placeholder="お問い合わせの件名を入力してください" required>
+      </div>
+
+      <!-- お問い合わせ内容 -->
+      <div class="cf-field">
+        <label class="cf-label" for="message">
+          お問い合わせ内容 <span class="cf-required">必須</span>
+        </label>
+        <textarea id="message" name="message" rows="8" placeholder="お問い合わせ内容を具体的にご記入ください。" required></textarea>
+        <p class="cf-hint">※できるだけ詳細にご記入いただくと、スムーズなご返信が可能です。</p>
+      </div>
+
+      <!-- 同意 -->
+      <div class="cf-agree">
+        <label class="cf-checkbox">
+          <input type="checkbox" id="agree" name="agree" required>
+          <span>
+            <a href="#" target="_blank">プライバシーポリシー</a> に同意します
+            <span class="cf-required">必須</span>
+          </span>
+        </label>
+      </div>
+
+      <!-- 送信 -->
+      <div class="cf-actions">
+        <button type="reset" class="cf-btn cf-btn-ghost">リセット</button>
+        <button type="submit" class="cf-btn cf-btn-primary">
+          <span>入力内容を確認する ＞</span>
+        </button>
+      </div>
+
+      <p class="cf-note">
+        ※当フォームでお預かりした個人情報は、お問い合わせへのご回答以外の目的では使用いたしません。
+      </p>
+    </form>
+
+  </div>
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="cf-footer">
+  <p>&copy; 2026 EVER EFFORT Inc. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
