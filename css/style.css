@@ -420,6 +420,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   align-items: center;
   justify-content: center;
   padding: 32px;
+  perspective: 1200px;
+  perspective-origin: 50% 70%;
 }
 /* 縦書きキャッチ */
 .vertical-copy {
@@ -429,8 +431,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   text-orientation: upright;
   font-family: "Yuji Syuku", "Noto Serif JP", serif;
   font-weight: 900;
-  font-size: clamp(28px, 3.6vw, 48px);
-  letter-spacing: 4px;
+  font-size: clamp(40px, 5vw, 68px);
+  letter-spacing: 6px;
   line-height: 1.5;
   color: #1a0000;
   text-shadow:
@@ -454,32 +456,50 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 24px 24px 12px 24px;
+  padding: 0;
+  overflow: visible;
 }
 .hero-image {
   position: relative;
-  right: -6%;
-  top: 14px;
-  max-width: 88%;
-  max-height: 88vh;
+  right: -22%;
+  bottom: -8vh;
+  max-width: 96%;
+  max-height: 110vh;
   width: auto;
   height: auto;
+  z-index: 10;
+  pointer-events: none;
   transform-origin: center bottom;
   filter:
-    drop-shadow(0 12px 18px rgba(0,0,0,0.28))
-    drop-shadow(0 0 30px rgba(255,180,90,0.25));
-  animation: mascotBounce 1.6s cubic-bezier(.5,.05,.5,.95) infinite;
+    drop-shadow(0 28px 30px rgba(0,0,0,0.6))
+    drop-shadow(0 12px 14px rgba(0,0,0,0.4))
+    drop-shadow(0 0 52px rgba(255,180,90,0.45))
+    drop-shadow(0 0 90px rgba(255,90,30,0.25));
+  animation: mascotBounce 1.8s cubic-bezier(.18,.9,.32,1.25) forwards;
 }
+.hero-art::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  width: 52%;
+  height: 30px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: -1;
+}
+/* 右下から飛び出して着地 → そのまま固定 */
 @keyframes mascotBounce {
-  0%   { transform: translateY(0)     scale(1.00, 1.00); }
-  20%  { transform: translateY(-38px) scale(0.96, 1.05); }
-  40%  { transform: translateY(0)     scale(1.06, 0.94); }
-  55%  { transform: translateY(-14px) scale(0.98, 1.02); }
-  70%  { transform: translateY(0)     scale(1.03, 0.97); }
-  85%  { transform: translateY(-4px)  scale(1.00, 1.00); }
-  100% { transform: translateY(0)     scale(1.00, 1.00); }
+  0%   { transform: translate(55%, 55%)  scale(0.35) rotate(-14deg); opacity: 0; }
+  35%  { transform: translate(10%, 12%)  scale(0.9)  rotate(-5deg);  opacity: 0.9; }
+  60%  { transform: translate(-3%, -4%)  scale(1.10) rotate(3deg);   opacity: 1; }
+  78%  { transform: translate(0, 0)      scale(0.96) rotate(0deg);   opacity: 1; }
+  90%  { transform: translate(0, -1%)    scale(1.02) rotate(0deg);   opacity: 1; }
+  100% { transform: translate(0, 0)      scale(1.00) rotate(0deg);   opacity: 1; }
 }
 
 /* ============ 右サイド：バナー縦積み ============ */

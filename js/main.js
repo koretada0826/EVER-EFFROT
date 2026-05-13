@@ -539,7 +539,7 @@ topJumpHero?.addEventListener("click", scrollTop);
       setupClones();
       visualIdx = 0;
       scrollToVisualIdx(0, "instant");
-      if (!mascot) startFallback();
+      startFallback();
     } else {
       stopFallback();
     }

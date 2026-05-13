@@ -332,12 +332,13 @@
     position: relative;
     right: 0;
     top: 0;
-    margin-top: 80px;
+    margin-top: 30px;
     margin-bottom: 0;
-    max-width: 56%;
-    max-height: 28vh;
+    max-width: 78%;
+    max-height: 42vh;
     width: auto;
     height: auto;
+    transform-origin: center bottom;
   }
 
   /* ============ 右サイド: FV下部にオーバーレイ表示する横スクロールカルーセル ============
@@ -789,14 +790,27 @@
   .card p, .card li { font-size: 13px; }
 
   /* ============ Special / Recruit / Contact ============ */
-  .recruit-cta, .contact { padding-top: 30px !important; padding-bottom: 30px !important; }
+  .recruit-cta, .contact { padding-top: 30px !important; padding-bottom: 30px !important; text-align: center !important; }
+  .recruit-cta .cta-buttons {
+    align-items: center !important;
+    gap: 14px !important;
+  }
   .btn-large {
     width: 100%;
     max-width: 320px;
     padding: 14px 18px;
     font-size: 15px;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
-  .lead { font-size: 14px; line-height: 1.8; }
+  .lead {
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .recruit-cta .sec-title { text-align: center !important; }
 
   /* ============ Footer ============ */
   .site-footer { padding: 24px 14px; }
@@ -806,10 +820,20 @@
     gap: 12px;
     text-align: center;
   }
+  .site-footer .brand {
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  .site-footer .brand a {
+    display: inline-block;
+  }
   .footer-logo-img {
     max-width: 260px;
     max-height: 88px;
     width: 78%;
+    margin: 0 auto !important;
+    display: block;
   }
   /* Footer nav: ピラミッド配置 3+2（6カラムグリッドで上段は col1-2/3-4/5-6、下段は col2-3/4-5） */
   .footer-nav {
@@ -890,7 +914,7 @@
   .brand-logo { max-width: 160px; }
   .vertical-copy { font-size: 18px; letter-spacing: 1.5px; left: 12px; top: 12px; }
   .stage-center { min-height: 50vh; height: 50vh; padding-bottom: 0; }
-  .hero-image { max-width: 56%; max-height: 32vh; margin-top: 95px; margin-bottom: -8px; }
+  .hero-image { max-width: 78%; max-height: 42vh; margin-top: 36px; margin-bottom: -8px; }
   .side-right { top: calc(50vh - 110px) !important; }
   .mobile-menu-btn-inner { font-size: 20px; letter-spacing: 4px; }
   .mobile-menu-btn { padding: 8px 22px; min-width: 108px; }
