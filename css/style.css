@@ -1,6 +1,8 @@
 /* ============ Reset ============ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+#company, #philosophy, #special, #leaders, #recruit, #contact { scroll-margin-top: 24px; }
+.leaders { max-width: 900px; margin: 0 auto; padding: 56px 24px 64px; text-align: center; }
 body {
   font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
   background: #1a0000;

@@ -1,0 +1,309 @@
+/* ===========================
+   NUMBER PAGE (数字で見るエバー)
+   赤×黒×金のサイトテイストを継承
+   =========================== */
+
+.page-number {
+  background:
+    radial-gradient(ellipse at top, #2a0708 0%, #170303 55%, #0c0202 100%);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* ヘッダー (contact.html と共通の cf-header) */
+.cf-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px;
+  background: linear-gradient(180deg, #1a0000 0%, rgba(20,0,0,0.85) 100%);
+  border-bottom: 2px solid #ffb84a;
+  backdrop-filter: blur(4px);
+}
+.cf-brand { display: inline-flex; align-items: center; }
+.cf-logo {
+  height: 46px; width: auto;
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55));
+}
+.cf-nav a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #ffb84a;
+  border-radius: 2px;
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffe88a;
+  background: linear-gradient(180deg, rgba(184,36,12,0.55), rgba(60,8,4,0.6));
+  transition: all .2s;
+}
+.cf-nav a:hover {
+  background: linear-gradient(180deg, #b8240c, #7a1408);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,120,30,0.4);
+}
+
+/* ============ ヒーロー ============ */
+.num-hero {
+  position: relative;
+  padding: 80px 24px 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.num-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255,120,30,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(255,200,90,0.12) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.num-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.num-hero-en {
+  font-family: "Reggae One", "Bangers", "Impact", sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: 6px;
+  margin: 0;
+  background: linear-gradient(180deg, #ffe88a 0%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow( 2px  2px 0 #2a0000)
+    drop-shadow(-2px -2px 0 #2a0000);
+}
+.num-hero-jp {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  letter-spacing: 6px;
+  margin: 4px 0 28px;
+  color: #fff;
+  filter:
+    drop-shadow( 1px  0   0 #2a0000)
+    drop-shadow(-1px  0   0 #2a0000)
+    drop-shadow( 0    1px 0 #2a0000)
+    drop-shadow( 0   -1px 0 #2a0000);
+}
+.num-hero-lead {
+  font-size: 15px;
+  line-height: 2;
+  color: #f3d68f;
+  margin: 0;
+}
+
+/* ============ グループ ============ */
+.num-group {
+  max-width: 1180px;
+  margin: 56px auto;
+  padding: 0 24px;
+}
+.num-group-head {
+  display: flex; align-items: baseline; gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid rgba(255,184,74,0.45);
+}
+.num-group-no {
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: 38px;
+  letter-spacing: 2px;
+  color: #ff7b1c;
+  filter:
+    drop-shadow( 1px  1px 0 #2a0000)
+    drop-shadow(-1px -1px 0 #2a0000);
+}
+.num-group-title {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  margin: 0;
+  color: #ffe88a;
+  filter:
+    drop-shadow( 1px  0   0 #2a0000)
+    drop-shadow(-1px  0   0 #2a0000)
+    drop-shadow( 0    1px 0 #2a0000)
+    drop-shadow( 0   -1px 0 #2a0000);
+}
+.num-group-sub {
+  margin: 0 0 0 auto;
+  font-family: "Reggae One", sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #ffa64a;
+  opacity: 0.85;
+}
+
+/* ============ グリッド ============ */
+.num-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 1024px) {
+  .num-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============ カード ============ */
+.num-card {
+  position: relative;
+  padding: 28px 22px 24px;
+  background:
+    radial-gradient(ellipse at center, rgba(184,36,12,0.35) 0%, rgba(40,4,4,0.85) 75%),
+    linear-gradient(180deg, #2a0808 0%, #170303 100%);
+  border: 2px solid #ffb84a;
+  border-radius: 2px;
+  text-align: center;
+  box-shadow:
+    inset 0 0 18px rgba(255,170,60,0.25),
+    0 4px 0 #2a0400,
+    0 0 12px rgba(255,120,30,0.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.num-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,200,90,0.5);
+  pointer-events: none;
+  border-radius: 1px;
+}
+.num-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 24px rgba(255,170,60,0.45),
+    0 6px 0 #2a0400,
+    0 0 18px rgba(255,120,30,0.45);
+}
+.num-label {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #ffd54a;
+  margin: 0 0 14px;
+  filter: drop-shadow(0 1px 0 #2a0000);
+}
+.num-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin: 0 0 12px;
+  line-height: 1;
+}
+.num-big {
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: clamp(40px, 5.5vw, 64px);
+  background: linear-gradient(180deg, #ffe88a 0%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow( 2px  2px 0 #2a0000)
+    drop-shadow(-1px -1px 0 #2a0000);
+  letter-spacing: 1px;
+}
+.num-unit {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 18px;
+  color: #ffd54a;
+  letter-spacing: 1px;
+  filter: drop-shadow(0 1px 0 #2a0000);
+}
+.num-note {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #f3d68f;
+  opacity: 0.92;
+}
+
+/* 男女比カード */
+.num-card-ratio .num-value {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 22px;
+  gap: 12px;
+}
+.ratio-male, .ratio-female {
+  display: inline-flex; align-items: baseline; gap: 4px;
+  color: #ffd54a;
+  letter-spacing: 1px;
+}
+.ratio-male strong, .ratio-female strong {
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: 36px;
+  background: linear-gradient(180deg, #ffe88a 0%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(1px 1px 0 #2a0000);
+}
+.ratio-sep { color: #ffb84a; }
+
+/* ============ CTA ============ */
+.num-cta {
+  max-width: 900px;
+  margin: 80px auto 60px;
+  padding: 56px 24px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(255,120,30,0.18) 0%, transparent 70%);
+  border-top: 1.5px solid rgba(255,184,74,0.4);
+  border-bottom: 1.5px solid rgba(255,184,74,0.4);
+}
+.num-cta-title {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: clamp(22px, 3vw, 30px);
+  letter-spacing: 4px;
+  color: #fff;
+  margin: 0 0 14px;
+  filter:
+    drop-shadow( 1px  0   0 #2a0000)
+    drop-shadow(-1px  0   0 #2a0000)
+    drop-shadow( 0    1px 0 #2a0000);
+}
+.num-cta-lead {
+  font-size: 14px;
+  color: #f3d68f;
+  margin: 0 0 28px;
+  letter-spacing: 1px;
+}
+.num-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* ============ モバイル ============ */
+@media (max-width: 640px) {
+  .num-hero { padding: 56px 20px 36px; }
+  .num-hero-en { letter-spacing: 4px; }
+  .num-hero-jp { letter-spacing: 4px; }
+  .num-hero-lead { font-size: 13px; }
+  .num-group { margin: 36px auto; }
+  .num-group-head { flex-wrap: wrap; gap: 10px; padding-bottom: 12px; }
+  .num-group-no { font-size: 30px; }
+  .num-group-title { font-size: 20px; letter-spacing: 3px; }
+  .num-group-sub { font-size: 11px; margin: 0; }
+  .num-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .num-card { padding: 22px 14px 18px; }
+  .num-label { font-size: 12px; letter-spacing: 2px; }
+  .num-big { font-size: 38px; }
+  .num-unit { font-size: 14px; }
+  .num-note { font-size: 11px; line-height: 1.6; }
+  .num-card-ratio .num-value { font-size: 16px; gap: 6px; }
+  .ratio-male strong, .ratio-female strong { font-size: 26px; }
+  .num-cta { margin: 48px auto 32px; padding: 36px 18px; }
+  .num-cta-title { font-size: 18px; letter-spacing: 2px; }
+  .num-cta-buttons { gap: 10px; }
+  .cf-header { padding: 10px 16px; }
+  .cf-logo { height: 36px; }
+  .cf-nav a { padding: 8px 12px; font-size: 12px; letter-spacing: 1.5px; }
+}
