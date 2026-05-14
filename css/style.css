@@ -1644,6 +1644,74 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   box-shadow: 8px 8px 0 #1a0000;
 }
 
+/* 採用情報をすべて見る - 控えめなテキストリンク調 */
+.recruit-allview {
+  margin-top: 40px;
+  text-align: center;
+  position: relative;
+}
+.recruit-allview::before {
+  content: "";
+  display: block;
+  width: 60px; height: 1px;
+  margin: 0 auto 22px;
+  background: linear-gradient(90deg, transparent, #ffb84a, transparent);
+}
+.btn-allview {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px 12px 26px;
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: #ffd54a;
+  background: transparent;
+  border: 1px solid rgba(255,184,74,0.55);
+  border-radius: 2px;
+  position: relative;
+  transition: all .25s ease;
+}
+.btn-allview::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(255,200,90,0.25);
+  pointer-events: none;
+  border-radius: 1px;
+  transition: inset .25s ease, border-color .25s ease;
+}
+.btn-allview-mark {
+  display: inline-block;
+  color: #ff9a3c;
+  font-size: 12px;
+  transition: transform .25s ease;
+  filter: drop-shadow(0 1px 0 #2a0000);
+}
+.btn-allview-label {
+  position: relative;
+  z-index: 1;
+}
+.btn-allview:hover {
+  color: #fff;
+  border-color: #ffb84a;
+  background: linear-gradient(180deg, rgba(184,36,12,0.35), rgba(60,8,4,0.35));
+  box-shadow: 0 0 12px rgba(255,120,30,0.35);
+}
+.btn-allview:hover::before {
+  inset: 5px;
+  border-color: rgba(255,200,90,0.6);
+}
+.btn-allview:hover .btn-allview-mark {
+  transform: translateX(4px);
+  color: #ffe88a;
+}
+@media (max-width: 600px) {
+  .recruit-allview { margin-top: 32px; }
+  .recruit-allview::before { margin-bottom: 16px; }
+  .btn-allview { font-size: 13px; letter-spacing: 3px; padding: 10px 18px 10px 22px; }
+}
+
 /* ============ Footer ============ */
 .site-footer {
   background: #0a0202;
