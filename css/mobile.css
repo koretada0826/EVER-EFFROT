@@ -765,23 +765,41 @@
   }
 
   /* ============ Company info ============ */
-  .company-info { padding-top: 30px !important; padding-bottom: 30px !important; }
-  .company-info dl {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+  .company-info { padding-top: 24px !important; padding-bottom: 24px !important; }
+  .company-inner { padding: 14px !important; }
+
+  /* テーブルを縦積み(th上/td下)に変えて省スペース化 */
+  .company-table,
+  .company-table tbody,
+  .company-table tr,
+  .company-table th,
+  .company-table td { display: block; width: 100% !important; box-sizing: border-box; }
+  .company-table tr {
+    border-bottom: 1px dashed rgba(255,184,74,0.25);
+    padding: 6px 0;
   }
-  .company-info dt {
-    background: rgba(255,184,74,0.1);
-    padding: 8px 12px;
-    border-bottom: none;
+  .company-table tr:last-child { border-bottom: none; }
+  .company-table th {
+    background: transparent;
+    color: #ffd54a;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 4px 4px 2px;
+    border-bottom: none !important;
+  }
+  .company-table td {
+    color: #f5e5d0;
     font-size: 13px;
+    line-height: 1.55;
+    padding: 0 4px 6px;
+    border-bottom: none !important;
   }
-  .company-info dd {
-    padding: 10px 12px 14px;
-    margin: 0;
-    border-bottom: 1px solid rgba(255,184,74,0.2);
-    font-size: 14px;
+  .biz-list { gap: 4px; }
+  .biz-list li {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-width: 1.5px;
+    letter-spacing: 0;
   }
 
   /* ============ Philosophy ============ */
