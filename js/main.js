@@ -377,24 +377,41 @@ topJumpHero?.addEventListener("click", scrollTop);
   viewport.addEventListener("mouseenter", stopAuto);
   viewport.addEventListener("mouseleave", startAuto);
 
-  // 非アクティブバナークリック処理:
-  //   - 実リンク(href が "#" 以外) → そのまま遷移を許可
-  //   - プレースホルダ("#") のみ中央への回転動作
+  // 中央へ回転させるユーティリティ(連続発火防止のロック付き)
+  let hoverLock = false;
+  const rotateToCenter = (i) => {
+    if (hoverLock) return;
+    const slot = slots[i];
+    if (slot === 0) return;
+    hoverLock = true;
+    stopAuto();
+    const direction = Math.sign(slot);
+    const steps = Math.abs(slot);
+    for (let k = 0; k < steps; k++) {
+      setTimeout(() => go(direction), k * 90);
+    }
+    setTimeout(() => { hoverLock = false; }, steps * 90 + 250);
+  };
+
+  // バナークリック: どの位置でも実リンクなら遷移、プレースホルダなら中央へ回転
   banners.forEach((b, i) => {
     b.addEventListener("click", (e) => {
       if (isMobile()) return;
       const slot = slots[i];
-      if (slot === 0) return; // 中央バナーは常に遷移
       const href = b.getAttribute("href") || "";
       const isRealLink = href && href !== "#";
-      if (isRealLink) return; // 実リンクは preventDefault せず遷移を通す
+      if (isRealLink) return; // どの位置でも遷移を通す
+      if (slot === 0) return; // 中央のプレースホルダはデフォルト動作のまま
       e.preventDefault();
-      const direction = Math.sign(slot);
-      const steps = Math.abs(slot);
-      for (let k = 0; k < steps; k++) {
-        setTimeout(() => go(direction), k * 90);
-      }
-      startAuto();
+      rotateToCenter(i);
+    });
+  });
+
+  // バナーホバーで中央へ自動回転 (PCのみ)
+  banners.forEach((b, i) => {
+    b.addEventListener("mouseenter", () => {
+      if (isMobile()) return;
+      rotateToCenter(i);
     });
   });
 
