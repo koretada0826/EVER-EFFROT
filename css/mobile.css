@@ -279,15 +279,15 @@
   }
 
   /* 中央：ヒーロー（モバイル用に背景画像をスコープ）
-     上を切り取って詰める：min-height を 52vh に、bg は center bottom 固定 */
+     カルーセルはこの直下に通常フローで来る (重ねない) */
   .stage-center {
     position: relative;
     grid-column: unset;
     grid-row: unset;
     width: 100%;
     max-width: 100vw;
-    min-height: 52vh;
-    height: 52vh;
+    min-height: 56vh;
+    height: 56vh;
     padding: 12px 8px 0;
     order: 1;
     overflow: hidden;
@@ -295,8 +295,8 @@
       url('../images/hero-bg-mobile.jpg') center center / cover no-repeat,
       linear-gradient(180deg, #4ec1f0 0%, #1ea3d4 50%, #0e7faa 100%);
     box-shadow:
-      inset 0 40px 40px -20px rgba(20,2,2,0.55),
-      inset 0 -40px 40px -20px rgba(20,2,2,0.45);
+      inset 0 30px 30px -20px rgba(20,2,2,0.35),
+      inset 0 -30px 30px -20px rgba(20,2,2,0.45);
   }
   /* 縦書き→横書き2行に変更。位置は FV 左上 */
   .vertical-copy {
@@ -327,7 +327,7 @@
     position: absolute !important;
     left: 50% !important;
     transform: translateX(-50%) rotate(-3deg) !important;
-    bottom: 178px !important;
+    bottom: 18px !important;
     top: auto !important;
     align-items: center !important;
     z-index: 12 !important;
@@ -360,28 +360,28 @@
     transform-origin: center bottom;
   }
 
-  /* ============ 右サイド: FV下部にオーバーレイ表示する横スクロールカルーセル ============
-     .side-right は .stage の子要素のため、.stage を基準に top で stage-center の底辺に揃える。
-     stage-center は 52vh、サイドライト高さ ≒ 114px (viewport 96 + padding 18) */
+  /* ============ 右サイド: キャラ画像の直下に独立バンドとして表示 ============
+     position: relative にして通常フロー化、stage-center の order=1 の後に来るよう order=2 */
   .side-right {
-    position: absolute !important;
-    top: calc(52vh - 170px);
-    left: 0;
-    right: 0;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
     width: 100%;
     max-width: 100vw;
     z-index: 8;
     grid-column: unset;
     grid-row: unset;
-    padding: 8px 6px 10px;
-    background: linear-gradient(180deg, rgba(20,4,4,0) 0%, rgba(20,4,4,0.55) 35%, rgba(20,4,4,0.82) 100%);
-    border-top: none;
+    padding: 10px 6px 12px;
+    background: linear-gradient(180deg, #1a0404 0%, #0e0202 100%);
+    border-top: 2px solid #ffb84a;
     border-left: none;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 4px;
-    order: 0;
+    order: 2;
     overflow: visible !important;
   }
   /* 矢印ボタン: 上下→左右に方向転換
@@ -950,9 +950,9 @@
   .vnav a { padding: 12px 14px; min-height: 50px; }
   .brand-logo { max-width: 160px; }
   .vertical-copy { font-size: 18px; letter-spacing: 1.5px; left: 12px; top: 12px; }
-  .stage-center { min-height: 50vh; height: 50vh; padding-bottom: 0; }
+  .stage-center { min-height: 54vh; height: 54vh; padding-bottom: 0; }
   .hero-image { max-width: 78%; max-height: 42vh; margin-top: 36px; margin-bottom: -8px; }
-  .side-right { top: calc(50vh - 165px) !important; }
+  /* .side-right は relative フロー配置のため top 上書きは不要 */
   .mobile-menu-btn-inner { font-size: 20px; letter-spacing: 4px; }
   .mobile-menu-btn { padding: 8px 22px; min-width: 108px; }
   .sec-title { font-size: 26px; letter-spacing: 1.5px; }
