@@ -261,7 +261,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   width: 100%;
   max-width: 180px;
   height: auto;
-  filter: drop-shadow(0 0 12px rgba(255,140,40,0.4));
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55));
 }
 .brand-en-main {
   font-family: "Reggae One", "Bangers", sans-serif;
@@ -448,6 +450,65 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   display: inline-block;
   transform: rotate(90deg);
   transform-origin: center center;
+}
+/* FV キャッチ「突き進むニャン！」は特に大きく・1行で */
+.vertical-copy.hero-catch {
+  font-size: clamp(54px, 7vw, 96px);
+  letter-spacing: 8px;
+  white-space: nowrap;
+  text-shadow:
+    -2px -2px 0 #fff, 2px -2px 0 #fff,
+    -2px  2px 0 #fff,  2px  2px 0 #fff,
+    6px 6px 0 #c8231c,
+    0 0 18px rgba(255,180,90,0.5);
+}
+.vertical-copy.hero-catch .vline { white-space: nowrap; }
+
+/* マスコット紹介ラベル（公式キャラクター エバニャン） */
+.mascot-intro {
+  position: absolute;
+  left: 38%;
+  bottom: 2%;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+  transform: rotate(-3deg);
+}
+.mascot-intro-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Reggae One", "Yuji Syuku", serif;
+  font-size: clamp(11px, 1.1vw, 15px);
+  letter-spacing: 2px;
+  line-height: 1.25;
+  color: #ffe98a;
+  background: linear-gradient(135deg, #6a0a0a 0%, #1a0000 100%);
+  padding: 5px 14px;
+  border: 1.5px solid #ffb84a;
+  border-radius: 4px;
+  text-shadow: 1px 1px 0 #1a0000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+  margin-bottom: 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+.mascot-intro-title .mit-line { display: block; }
+.mascot-intro-name {
+  font-family: "Reggae One", "Yuji Syuku", serif;
+  font-size: clamp(22px, 2.6vw, 38px);
+  letter-spacing: 4px;
+  color: #ffe98a;
+  background: linear-gradient(180deg, #fff5b0 0%, #ffd54a 40%, #ff7b1c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(2px 2px 0 #1a0000)
+    drop-shadow(0 0 8px rgba(255,170,60,0.7));
+  padding: 0 4px;
 }
 
 /* ヒーロー */
@@ -1114,6 +1175,30 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .message-quote::before { content: "“"; top: 4px; left: 8px; }
 .message-quote::after  { content: "”"; bottom: -16px; right: 12px; }
+.message-quote .message-en {
+  margin: 0 0 8px;
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: 26px;
+  letter-spacing: 4px;
+  text-align: center;
+  line-height: 1.15;
+  background: linear-gradient(180deg, #fff5b0 0%, #ffd54a 40%, #ff7b1c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(2px 2px 0 #1a0000) drop-shadow(0 0 10px rgba(255,170,60,0.6));
+}
+.message-quote .message-en .en-line { display: block; }
+.message-quote .message-jp {
+  margin: 0 0 16px;
+  font-family: "Yuji Syuku", "Noto Serif JP", serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-align: center;
+  color: #ffe98a;
+  text-shadow: 2px 2px 0 #1a0000, 0 0 8px rgba(255,170,60,0.5);
+}
 .message-quote p {
   margin: 0 0 16px;
   font-family: "Noto Serif JP", serif;
@@ -1580,6 +1665,9 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   height: auto;
   max-width: 360px;
   max-height: 120px;
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55));
 }
 .footer-nav {
   display: flex; justify-content: center; gap: 24px;

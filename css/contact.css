@@ -28,7 +28,9 @@
 .cf-logo {
   height: 44px;
   width: auto;
-  filter: drop-shadow(0 0 10px rgba(255,140,40,0.5));
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55));
 }
 .cf-nav a {
   color: #ffd54a;

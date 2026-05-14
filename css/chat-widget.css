@@ -1,0 +1,509 @@
+/* ==========================================================
+   エバーにゃんAI受付 - チャットウィジェット
+   赤×黒×金 ゲームUI 風 / 完全無料 / API なし
+   ========================================================== */
+
+.evchat-root { all: initial; }
+.evchat-root *,
+.evchat-root *::before,
+.evchat-root *::after {
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+
+/* ============ ランチャーボタン ============ */
+.evchat-launcher {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 112px;
+  height: 112px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  z-index: 9000;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #ffb84a 0%, #c8231c 38%, #6a0a0a 78%, #1a0000 100%);
+  box-shadow:
+    inset 0 -6px 14px rgba(0,0,0,0.55),
+    inset 0 4px 10px rgba(255,210,120,0.45),
+    0 0 0 3px #ffb84a,
+    0 0 0 5px rgba(255,184,74,0.35),
+    0 10px 22px rgba(0,0,0,0.55),
+    0 0 30px rgba(255,140,40,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffe98a;
+  text-shadow: 0 1px 0 #1a0000, 0 0 8px rgba(255,170,60,0.8);
+  font-family: "Reggae One", "Bangers", sans-serif;
+  animation: evchat-pulse 2.4s ease-in-out infinite;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.evchat-launcher:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    inset 0 -6px 14px rgba(0,0,0,0.55),
+    inset 0 4px 10px rgba(255,210,120,0.55),
+    0 0 0 3px #ffd54a,
+    0 0 0 5px rgba(255,184,74,0.45),
+    0 14px 28px rgba(0,0,0,0.6),
+    0 0 42px rgba(255,140,40,0.85);
+}
+.evchat-launcher:focus-visible {
+  outline: 3px solid #ffe98a;
+  outline-offset: 4px;
+}
+.evchat-launcher-icon {
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle, #fff 0%, #ffe9c4 70%, #ffb84a 100%);
+  filter: drop-shadow(0 0 6px rgba(255,170,60,0.9));
+}
+.evchat-launcher-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  display: block;
+}
+.evchat-launcher-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  line-height: 1;
+  background: rgba(0,0,0,0.65);
+  padding: 3px 9px;
+  border-radius: 10px;
+  border: 1px solid #ffd54a;
+}
+
+/* 横に出る吹き出しヒント（自動で消える） */
+.evchat-hint {
+  position: fixed;
+  right: 148px;
+  bottom: 56px;
+  z-index: 9050;
+  background: linear-gradient(180deg, #fff5b0 0%, #ffd54a 60%, #ff7b1c 100%);
+  color: #1a0000;
+  font-family: "Reggae One", "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  border: 2px solid #ffe98a;
+  border-radius: 12px;
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.5),
+    0 0 24px rgba(255,140,40,0.5);
+  text-shadow: 0 1px 0 rgba(255,233,138,0.6);
+  white-space: nowrap;
+  animation: evchat-hint-in .35s cubic-bezier(.18,.9,.32,1.25) both,
+             evchat-hint-bob 2.2s ease-in-out 1s infinite;
+  pointer-events: none;
+}
+.evchat-hint::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 10px solid transparent;
+  border-left-color: #ffd54a;
+  filter: drop-shadow(2px 0 0 #ffe98a);
+}
+.evchat-hint.is-gone {
+  animation: evchat-hint-out .25s ease forwards;
+}
+@keyframes evchat-hint-in {
+  from { opacity: 0; transform: translateX(20px) scale(.85); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes evchat-hint-out {
+  to { opacity: 0; transform: translateX(20px) scale(.9); }
+}
+@keyframes evchat-hint-bob {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-6px); }
+}
+@keyframes evchat-pulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 -6px 14px rgba(0,0,0,0.55),
+      inset 0 4px 10px rgba(255,210,120,0.45),
+      0 0 0 3px #ffb84a,
+      0 0 0 5px rgba(255,184,74,0.35),
+      0 10px 22px rgba(0,0,0,0.55),
+      0 0 30px rgba(255,140,40,0.6);
+  }
+  50% {
+    box-shadow:
+      inset 0 -6px 14px rgba(0,0,0,0.55),
+      inset 0 4px 10px rgba(255,210,120,0.55),
+      0 0 0 3px #ffd54a,
+      0 0 0 7px rgba(255,184,74,0.55),
+      0 10px 22px rgba(0,0,0,0.55),
+      0 0 48px rgba(255,160,50,0.9);
+  }
+}
+.evchat-launcher.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.5); }
+
+/* 通知ドット（初回未開封時など） */
+.evchat-badge {
+  position: absolute;
+  top: 4px; right: 4px;
+  min-width: 16px; height: 16px;
+  padding: 0 5px;
+  background: #ffd54a;
+  color: #1a0000;
+  font-size: 10px;
+  line-height: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #1a0000;
+  font-weight: 900;
+}
+
+/* ============ ウィンドウ ============ */
+.evchat-window {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 540px;
+  max-width: calc(100vw - 24px);
+  height: 780px;
+  max-height: calc(100vh - 40px);
+  z-index: 9100;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,120,40,0.18) 0%, transparent 55%),
+    linear-gradient(180deg, #2a0808 0%, #1a0000 50%, #0d0000 100%);
+  border: 2px solid #ffb84a;
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 28px rgba(255,140,40,0.18),
+    0 0 0 4px rgba(255,184,74,0.18),
+    0 22px 52px rgba(0,0,0,0.65),
+    0 0 60px rgba(255,90,30,0.35);
+  transform-origin: bottom right;
+  transform: scale(.6) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .28s cubic-bezier(.18,.9,.32,1.25), opacity .25s ease;
+  overflow: hidden;
+}
+.evchat-window.is-open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ヘッダー */
+.evchat-header {
+  position: relative;
+  padding: 14px 16px 12px;
+  background: linear-gradient(180deg, #c8231c 0%, #6a0a0a 100%);
+  border-bottom: 2px solid #ffb84a;
+  color: #ffe98a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.evchat-header::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd54a, transparent);
+  opacity: 0.6;
+}
+.evchat-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 40%, #fff 0%, #ffe9c4 60%, #ffb84a 100%);
+  border: 2px solid #ffe98a;
+  box-shadow: 0 0 12px rgba(255,170,60,0.7), inset 0 -4px 8px rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.evchat-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;
+  display: block;
+}
+.evchat-launcher-mascot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 32%;
+  border-radius: 50%;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+.evchat-title {
+  flex: 1;
+  min-width: 0;
+}
+.evchat-title-main {
+  font-family: "Reggae One", "Yuji Syuku", "Noto Serif JP", serif;
+  font-size: 17px;
+  letter-spacing: 2px;
+  color: #ffe98a;
+  text-shadow: 1px 1px 0 #1a0000, 0 0 8px rgba(255,170,60,0.6);
+  line-height: 1.1;
+}
+.evchat-title-sub {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #ffd9b0;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.evchat-close {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #ffe98a;
+  background: rgba(0,0,0,0.4);
+  color: #ffe98a;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s ease, transform .15s ease;
+  flex-shrink: 0;
+}
+.evchat-close:hover { background: rgba(200,35,28,0.7); transform: rotate(90deg); }
+
+/* メッセージ領域 */
+.evchat-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #ffb84a #1a0000;
+}
+.evchat-body::-webkit-scrollbar { width: 8px; }
+.evchat-body::-webkit-scrollbar-track { background: #1a0000; }
+.evchat-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffd54a, #c8231c);
+  border-radius: 4px;
+  border: 1px solid #ffb84a;
+}
+
+/* メッセージ吹き出し */
+.evchat-msg {
+  max-width: 86%;
+  padding: 12px 16px;
+  font-size: 14.5px;
+  line-height: 1.75;
+  word-break: break-word;
+  position: relative;
+  animation: evchat-msg-in .25s ease;
+}
+@keyframes evchat-msg-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.evchat-msg.is-bot {
+  align-self: flex-start;
+  background:
+    linear-gradient(180deg, rgba(80,12,12,0.95) 0%, rgba(40,4,4,0.95) 100%);
+  border: 1px solid #ffb84a;
+  border-radius: 4px 14px 14px 14px;
+  color: #fff5dc;
+  box-shadow:
+    inset 0 0 12px rgba(255,140,40,0.12),
+    0 4px 10px rgba(0,0,0,0.4);
+}
+.evchat-msg.is-bot::before {
+  content: "🐾";
+  position: absolute;
+  left: -10px; top: -10px;
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, #ffd54a, #c8231c);
+  border: 1.5px solid #1a0000;
+  border-radius: 50%;
+  font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+}
+.evchat-msg.is-user {
+  align-self: flex-end;
+  background: linear-gradient(180deg, #2a0808 0%, #0d0000 100%);
+  border: 1.5px solid #ffd54a;
+  border-radius: 14px 4px 14px 14px;
+  color: #ffe98a;
+  text-shadow: 1px 1px 0 #1a0000;
+}
+
+/* タイピングインジケータ */
+.evchat-typing {
+  align-self: flex-start;
+  background:
+    linear-gradient(180deg, rgba(80,12,12,0.95) 0%, rgba(40,4,4,0.95) 100%);
+  border: 1px solid #ffb84a;
+  border-radius: 4px 14px 14px 14px;
+  padding: 12px 16px;
+  display: inline-flex;
+  gap: 6px;
+}
+.evchat-typing span {
+  width: 8px; height: 8px;
+  background: #ffd54a;
+  border-radius: 50%;
+  animation: evchat-blink 1s infinite;
+}
+.evchat-typing span:nth-child(2) { animation-delay: .15s; }
+.evchat-typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes evchat-blink {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+/* クイック / CTA ボタン */
+.evchat-quicks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 2px;
+  animation: evchat-msg-in .3s ease .1s both;
+}
+.evchat-quick {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  background:
+    linear-gradient(180deg, #c8231c 0%, #7a0d0d 100%);
+  color: #ffe98a;
+  border: 1.5px solid #ffd54a;
+  border-radius: 999px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #1a0000;
+  box-shadow:
+    inset 0 -2px 6px rgba(0,0,0,0.45),
+    inset 0 1px 2px rgba(255,210,120,0.4),
+    0 3px 8px rgba(0,0,0,0.4);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.evchat-quick:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #e0301f 0%, #8e1010 100%);
+  box-shadow:
+    inset 0 -2px 6px rgba(0,0,0,0.45),
+    inset 0 1px 2px rgba(255,210,120,0.6),
+    0 4px 14px rgba(255,90,30,0.55);
+}
+.evchat-quick:active { transform: translateY(0); }
+.evchat-quick.is-cta {
+  background: linear-gradient(180deg, #ffd54a 0%, #c8231c 60%, #6a0a0a 100%);
+  color: #1a0000;
+  text-shadow: 0 1px 0 rgba(255,233,138,0.5);
+  border-color: #ffe98a;
+}
+
+/* フッター入力 */
+.evchat-footer {
+  border-top: 2px solid #ffb84a;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #1a0000 0%, #0d0000 100%);
+  display: flex;
+  gap: 8px;
+  position: relative;
+}
+.evchat-footer::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd54a, transparent);
+  opacity: 0.6;
+}
+.evchat-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  background: rgba(20,2,2,0.9);
+  border: 1.5px solid #6a0a0a;
+  border-radius: 8px;
+  color: #fff5dc;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.evchat-input::placeholder { color: rgba(255,233,138,0.45); }
+.evchat-input:focus {
+  border-color: #ffd54a;
+  box-shadow: 0 0 0 2px rgba(255,184,74,0.3), inset 0 0 8px rgba(255,140,40,0.15);
+}
+.evchat-send {
+  width: 44px;
+  border: 1.5px solid #ffd54a;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffd54a 0%, #c8231c 60%, #6a0a0a 100%);
+  color: #1a0000;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow:
+    inset 0 -2px 4px rgba(0,0,0,0.45),
+    0 3px 8px rgba(0,0,0,0.4);
+  transition: transform .12s ease, filter .12s ease;
+}
+.evchat-send:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.evchat-send:active { transform: translateY(0); }
+
+.evchat-disclaimer {
+  font-size: 9.5px;
+  color: rgba(255,233,138,0.4);
+  text-align: center;
+  padding: 0 10px 8px;
+  letter-spacing: 0.5px;
+  background: #0d0000;
+}
+
+/* ============ モバイル ============ */
+@media (max-width: 768px) {
+  .evchat-launcher {
+    right: 14px;
+    bottom: 14px;
+    width: 92px;
+    height: 92px;
+    padding: 8px;
+  }
+  .evchat-launcher-icon { width: 60px; height: 60px; }
+  .evchat-launcher-label { font-size: 11px; letter-spacing: 1px; padding: 2px 7px; }
+  .evchat-hint {
+    right: 116px;
+    bottom: 42px;
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  .evchat-window {
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+    height: 88vh;
+    max-height: calc(100vh - 24px);
+  }
+  .evchat-avatar { width: 48px; height: 48px; }
+  .evchat-title-main { font-size: 15px; letter-spacing: 1.5px; }
+  .evchat-title-sub { font-size: 9.5px; }
+  .evchat-msg { font-size: 13px; padding: 9px 12px; }
+  .evchat-quick { font-size: 11.5px; padding: 7px 11px; }
+}

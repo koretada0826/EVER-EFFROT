@@ -7,8 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Reggae+One&family=RocknRoll+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260514k">
-<link rel="stylesheet" href="css/mobile.css?v=20260514k">
+<link rel="stylesheet" href="css/style.css?v=20260514u">
+<link rel="stylesheet" href="css/mobile.css?v=20260514u">
+<link rel="stylesheet" href="css/chat-widget.css?v=20260514u">
 </head>
 <body>
 
@@ -83,15 +84,18 @@
     <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="メニューを開く">
       <span class="mobile-menu-btn-inner">MENU</span>
     </button>
-    <p class="vertical-copy">
-      <span class="vline">挑戦の歴史に<span class="v-ellipsis">…</span></span>
-      <span class="vline">また1ページ。</span>
+    <p class="vertical-copy hero-catch">
+      <span class="vline">突き進むニャン！</span>
     </p>
     <div class="hero-art">
       <img src="images/mascot_main.png"
-           alt="EVER EFFORT マスコット"
+           alt="EVER EFFORT 公式キャラクター エバニャン"
            class="hero-image"
            data-mascot-frames="images/mascot_main.png,images/mascot_main.png">
+      <div class="mascot-intro">
+        <span class="mascot-intro-title"><span class="mit-line">Everエフォート</span><span class="mit-line">公式キャラクター</span></span>
+        <span class="mascot-intro-name">エバニャン</span>
+      </div>
     </div>
   </div>
   <!-- モバイル限定: ドロワー背景オーバーレイ -->
@@ -110,7 +114,7 @@
           <span class="banner-sub">エントリー受付中</span>
         </a>
         <a href="#" class="banner">
-          <span class="banner-title">社員インタビュー</span>
+          <span class="banner-title">仲間インタビュー</span>
           <span class="banner-sub">リアルなキャリアストーリー</span>
         </a>
         <a href="#" class="banner">
@@ -179,7 +183,7 @@
         <dl class="info-spec">
           <div><dt>設立</dt><dd>2013年</dd></div>
           <div><dt>資本金</dt><dd>4,300万円</dd></div>
-          <div><dt>従業員数</dt><dd>160名</dd></div>
+          <div><dt>従業員数</dt><dd>100名</dd></div>
           <div><dt>所在地</dt><dd>東京都豊島区</dd></div>
         </dl>
       </div>
@@ -218,7 +222,8 @@
       </header>
       <div class="info-panel-body">
         <blockquote class="message-quote">
-          <p>「挑戦の歴史に、また一ページ。<br>変化を恐れず、進化し続けよ。」</p>
+          <p class="message-en"><span class="en-line">LESS SKILL</span><span class="en-line">MORE WILL</span></p>
+          <p class="message-jp">能力より気持ち</p>
           <footer><span class="role">代表取締役社長</span><span class="name">青木 一平</span></footer>
         </blockquote>
       </div>
@@ -228,7 +233,7 @@
     <article class="info-panel feature-panel">
       <header class="info-panel-title">
         <span class="title-deco title-deco-l"></span>
-        <h3>社員インタビュー</h3>
+        <h3>仲間インタビュー</h3>
         <span class="title-deco title-deco-r"></span>
       </header>
       <div class="info-panel-body">
@@ -273,7 +278,7 @@
       </header>
       <div class="info-panel-body">
         <div class="stats-grid">
-          <div class="stat"><span class="stat-num">160</span><span class="stat-unit">名</span><span class="stat-label">従業員数</span></div>
+          <div class="stat"><span class="stat-num">100</span><span class="stat-unit">名</span><span class="stat-label">従業員数</span></div>
           <div class="stat"><span class="stat-num">13</span><span class="stat-unit">期</span><span class="stat-label">設立から</span></div>
           <div class="stat"><span class="stat-num">6</span><span class="stat-unit">事業</span><span class="stat-label">展開領域</span></div>
           <div class="stat"><span class="stat-num">4,300</span><span class="stat-unit">万円</span><span class="stat-label">資本金</span></div>
@@ -306,7 +311,7 @@
         <tr><th>設立</th><td>2013年4月2日</td></tr>
         <tr><th>代表者</th><td>代表取締役社長　青木 一平</td></tr>
         <tr><th>資本金</th><td>4,300万円</td></tr>
-        <tr><th>従業員数</th><td>160名</td></tr>
+        <tr><th>従業員数</th><td>100名</td></tr>
         <tr><th>事業内容</th><td>
           <ul class="biz-list">
             <li>コールセンター事業</li>
@@ -359,7 +364,7 @@
     </article>
     <article class="block">
       <figure data-label="INTERVIEW"></figure>
-      <h3>社員インタビュー</h3>
+      <h3>仲間インタビュー</h3>
       <p>現役メンバーのリアルな声を発信。</p>
       <a href="#" class="btn"><span>MORE</span></a>
     </article>
@@ -417,6 +422,7 @@
   <button id="topBtn" aria-label="ページトップへ"><span>▲</span><small>TOP</small></button>
 </footer>
 
-<script src="js/main.js?v=20260514k"></script>
+<script src="js/main.js?v=20260514u"></script>
+<script src="js/chat-widget.js?v=20260514u" defer></script>
 </body>
 </html>
