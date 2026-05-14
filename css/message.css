@@ -143,7 +143,11 @@
   line-height: 2.1;
   color: #f3d68f;
   letter-spacing: 1px;
+  word-break: keep-all;        /* 単漢字での折り返しを抑制 */
+  overflow-wrap: break-word;
+  text-wrap: pretty;           /* 対応ブラウザは1文字溢れを自動回避 */
 }
+.msg-nowrap { white-space: nowrap; }
 .msg-text p { margin: 0 0 22px; }
 .msg-text p:last-child { margin-bottom: 0; }
 .msg-text strong {
@@ -182,18 +186,14 @@
   border-top: 1px dashed rgba(255,184,74,0.4);
   justify-content: flex-end;
 }
-.msg-sign-mark {
-  font-family: "Reggae One", "Bangers", sans-serif;
-  font-size: 56px;
-  letter-spacing: 0;
-  background: linear-gradient(180deg, #c8231c 0%, #7a1408 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* 企業ロゴ画像 (V + EVER EFFORT) を署名に使用、暗背景で見えるようにdrop-shadow強化 */
+.msg-sign-logo {
+  height: 64px;
+  width: auto;
   filter:
-    drop-shadow( 1px  1px 0 #2a0000)
-    drop-shadow(-1px -1px 0 #2a0000);
-  line-height: 1;
+    drop-shadow(0 0 8px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55))
+    drop-shadow(-1px -1px 0 rgba(0,0,0,0.55));
 }
 .msg-sign-text {
   display: flex;
@@ -271,7 +271,7 @@
   .msg-text p { margin-bottom: 16px; }
   .msg-win { font-size: 13px; padding: 1px 8px; letter-spacing: 1px; }
   .msg-sign { flex-direction: column; gap: 8px; justify-content: center; align-items: center; margin-top: 30px; padding-top: 20px; text-align: center; }
-  .msg-sign-mark { font-size: 42px; }
+  .msg-sign-logo { height: 48px; }
   .msg-sign-name { font-size: 18px; letter-spacing: 3px; }
   .msg-cta { margin: 48px auto 32px; padding: 36px 18px; }
   .msg-cta-title { font-size: 17px; letter-spacing: 2px; }
