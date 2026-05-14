@@ -377,20 +377,24 @@ topJumpHero?.addEventListener("click", scrollTop);
   viewport.addEventListener("mouseenter", stopAuto);
   viewport.addEventListener("mouseleave", startAuto);
 
-  // 非アクティブバナークリックで中央へ回転
+  // 非アクティブバナークリック処理:
+  //   - 実リンク(href が "#" 以外) → そのまま遷移を許可
+  //   - プレースホルダ("#") のみ中央への回転動作
   banners.forEach((b, i) => {
     b.addEventListener("click", (e) => {
       if (isMobile()) return;
       const slot = slots[i];
-      if (slot !== 0) {
-        e.preventDefault();
-        const direction = Math.sign(slot);
-        const steps = Math.abs(slot);
-        for (let k = 0; k < steps; k++) {
-          setTimeout(() => go(direction), k * 90);
-        }
-        startAuto();
+      if (slot === 0) return; // 中央バナーは常に遷移
+      const href = b.getAttribute("href") || "";
+      const isRealLink = href && href !== "#";
+      if (isRealLink) return; // 実リンクは preventDefault せず遷移を通す
+      e.preventDefault();
+      const direction = Math.sign(slot);
+      const steps = Math.abs(slot);
+      for (let k = 0; k < steps; k++) {
+        setTimeout(() => go(direction), k * 90);
       }
+      startAuto();
     });
   });
 
