@@ -1638,6 +1638,10 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   box-shadow: 5px 5px 0 #1a0000;
   transition: all .2s;
 }
+/* リンク化した feature-panel が a タグでも見た目が崩れないように */
+a.feature-panel-link { text-decoration: none; color: inherit; cursor: pointer; }
+a.feature-panel-link:hover { transform: translate(-2px, -2px); transition: transform .2s; }
+
 .btn-primary { background: #c8231c; color: #ffd54a; }
 .btn-secondary { background: #ffd54a; color: #c8231c; }
 .btn-large:hover {
