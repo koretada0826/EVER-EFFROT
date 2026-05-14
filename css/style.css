@@ -685,7 +685,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
     0 6px 22px rgba(0,0,0,0.65);
 }
 .carousel-track .banner:not(.is-active) {
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
 }
 .carousel-track .banner.is-active:hover {
   filter: brightness(1.08) drop-shadow(0 0 20px rgba(255,180,60,0.9));
