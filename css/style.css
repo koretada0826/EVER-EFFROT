@@ -145,21 +145,21 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   overflow: hidden;
 }
 
-/* ファーストビュー背景画像 (夕焼け×海×椰子) */
+/* ファーストビュー背景画像 (トロピカル×海×椰子) */
 .sky {
   position: absolute; inset: 0;
   background:
-    url('../images/hero-bg.png') center center / cover no-repeat,
-    linear-gradient(180deg, #7a1a15 0%, #c44a20 55%, #f0a050 100%);
+    url('../images/hero-bg.jpg') center center / cover no-repeat,
+    linear-gradient(180deg, #4ec1f0 0%, #1ea3d4 55%, #0e7faa 100%);
 }
 .sky::after {
   content: "";
   position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(60,10,8,0.10) 0%,
+    rgba(0,0,0,0.06) 0%,
     rgba(0,0,0,0) 40%,
     rgba(0,0,0,0) 70%,
-    rgba(60,10,8,0.18) 100%);
+    rgba(0,0,0,0.18) 100%);
   pointer-events: none;
 }
 /* 背景画像に含まれるためCSSシーン要素は非表示 */
