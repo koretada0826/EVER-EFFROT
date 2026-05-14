@@ -1,15 +1,32 @@
 // ============ Loader (進捗 % + バー) ============
+// セッション内で一度再生したら以降は表示しない (他ページ→トップに戻るたびに再生されないように)
 (() => {
   const loader = document.getElementById("loader");
   const percentEl = document.getElementById("loaderPercent");
   const barFill = document.getElementById("loaderBarFill");
   if (!loader || !percentEl || !barFill) return;
 
+  const ALREADY_PLAYED = (() => {
+    try { return sessionStorage.getItem("everLoaderPlayed") === "1"; }
+    catch (_) { return false; }
+  })();
+
+  if (ALREADY_PLAYED) {
+    loader.classList.add("hide");
+    loader.style.display = "none";
+    return;
+  }
+
   const DURATION = 2200;
   const start = performance.now();
   let pageLoaded = false;
 
   window.addEventListener("load", () => { pageLoaded = true; });
+
+  const finish = () => {
+    try { sessionStorage.setItem("everLoaderPlayed", "1"); } catch (_) {}
+    loader.classList.add("hide");
+  };
 
   const tick = (now) => {
     const elapsed = now - start;
@@ -21,7 +38,7 @@
     if (ratio >= 1 && pageLoaded) {
       percentEl.textContent = "100%";
       barFill.style.width = "100%";
-      setTimeout(() => loader.classList.add("hide"), 200);
+      setTimeout(finish, 200);
       return;
     }
     if (ratio >= 1 && !pageLoaded) {
