@@ -6,9 +6,18 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build-version" content="20260514zr">
+<meta name="build-version" content="20260514zs">
 <title>EVER EFFORT | 株式会社エバーエフォート</title>
 <script>
+  // 初期ロード時はURLハッシュを無視してFVから開始
+  if (location.hash) {
+    try {
+      history.replaceState(null, "", location.pathname + location.search);
+    } catch (_) {}
+  }
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.addEventListener("load", () => { window.scrollTo(0, 0); });
+
   // ServiceWorker / Cache Storage クリア
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
@@ -37,9 +46,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&family=Reggae+One&family=RocknRoll+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20260514zr">
-<link rel="stylesheet" href="css/mobile.css?v=20260514zr">
-<link rel="stylesheet" href="css/chat-widget.css?v=20260514zr">
+<link rel="stylesheet" href="css/style.css?v=20260514zs">
+<link rel="stylesheet" href="css/mobile.css?v=20260514zs">
+<link rel="stylesheet" href="css/chat-widget.css?v=20260514zs">
 </head>
 <body>
 
@@ -417,7 +426,7 @@
   <button id="topBtn" aria-label="ページトップへ"><span>▲</span><small>TOP</small></button>
 </footer>
 
-<script src="js/main.js?v=20260514zr"></script>
-<script src="js/chat-widget.js?v=20260514zr" defer></script>
+<script src="js/main.js?v=20260514zs"></script>
+<script src="js/chat-widget.js?v=20260514zs" defer></script>
 </body>
 </html>
