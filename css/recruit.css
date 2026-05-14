@@ -276,11 +276,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 24px;
 }
 .rc-flow-list li {
+  flex: 0 0 160px;
   display: flex; flex-direction: column; align-items: center;
   gap: 6px;
   padding: 12px 8px;
@@ -293,7 +295,7 @@
 .rc-flow-list li + li::before {
   content: "▶";
   position: absolute;
-  left: -10px;
+  left: -16px;
   top: 50%;
   transform: translateY(-50%);
   color: #ffb84a;
@@ -312,7 +314,8 @@
   letter-spacing: 1px;
 }
 @media (max-width: 700px) {
-  .rc-flow-list { grid-template-columns: 1fr 1fr; }
+  .rc-flow-list { gap: 10px; }
+  .rc-flow-list li { flex: 0 0 calc(50% - 10px); }
   .rc-flow-list li + li::before { display: none; }
 }
 
