@@ -1,0 +1,288 @@
+/* ===========================
+   VIDEO PAGE (動画で見るエバー)
+   赤×黒×金のサイトテイスト
+   =========================== */
+
+.page-video {
+  background:
+    radial-gradient(ellipse at top, #2a0708 0%, #170303 55%, #0c0202 100%);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* 共通ヘッダー (interview と同型) */
+.cf-header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 28px;
+  background: linear-gradient(180deg, #1a0000 0%, rgba(20,0,0,0.85) 100%);
+  border-bottom: 2px solid #ffb84a;
+  backdrop-filter: blur(4px);
+}
+.cf-brand { display: inline-flex; align-items: center; }
+.cf-logo {
+  height: 46px; width: auto;
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,0.7))
+    drop-shadow(1px 1px 0 rgba(0,0,0,0.55));
+}
+.cf-nav a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #ffb84a;
+  border-radius: 2px;
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #ffe88a;
+  background: linear-gradient(180deg, rgba(184,36,12,0.55), rgba(60,8,4,0.6));
+  transition: all .2s;
+}
+.cf-nav a:hover {
+  background: linear-gradient(180deg, #b8240c, #7a1408);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255,120,30,0.4);
+}
+
+/* ============ ヒーロー ============ */
+.vd-hero {
+  position: relative;
+  padding: 80px 24px 48px;
+  text-align: center;
+  overflow: hidden;
+}
+.vd-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255,120,30,0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(255,200,90,0.12) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.vd-hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+.vd-hero-en {
+  font-family: "Reggae One", "Bangers", "Impact", sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: 6px;
+  margin: 0;
+  background: linear-gradient(180deg, #ffe88a 0%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow( 2px  2px 0 #2a0000)
+    drop-shadow(-2px -2px 0 #2a0000);
+}
+.vd-hero-jp {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  letter-spacing: 6px;
+  margin: 4px 0 24px;
+  color: #fff;
+  filter:
+    drop-shadow( 1px  0   0 #2a0000)
+    drop-shadow(-1px  0   0 #2a0000)
+    drop-shadow( 0    1px 0 #2a0000)
+    drop-shadow( 0   -1px 0 #2a0000);
+}
+.vd-hero-lead { font-size: 15px; line-height: 2; color: #f3d68f; margin: 0; }
+
+/* ============ メンバー動画リスト ============ */
+.vd-list {
+  max-width: 1060px;
+  margin: 32px auto 60px;
+  padding: 0 24px;
+}
+.vd-list-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid rgba(255,184,74,0.55);
+}
+.vd-list-no {
+  font-family: "Reggae One", "Bangers", "Impact", sans-serif;
+  font-size: 44px;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #ffb84a;
+  background: linear-gradient(180deg, rgba(255,232,138,0.2), transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  line-height: 1;
+}
+.vd-list-title {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: #ffe88a;
+  margin: 0;
+}
+.vd-list-sub {
+  margin: 0 0 0 auto;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #ffa64a;
+  opacity: 0.85;
+}
+
+/* グリッド (interview と同じ列数ロジック) */
+.vd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 1024px) {
+  .vd-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .vd-grid { grid-template-columns: 1fr; }
+}
+
+/* Y・M ボタンカード — interview の .iv-card 系統に揃え、
+   イニシャルを大きく中央に出すデザイン */
+.vd-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 24px 28px;
+  min-height: 240px;
+  background:
+    radial-gradient(ellipse at center, rgba(184,36,12,0.38) 0%, rgba(40,4,4,0.9) 75%),
+    linear-gradient(180deg, #2a0808 0%, #170303 100%);
+  border: 2px solid #ffb84a;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 18px rgba(255,170,60,0.22),
+    0 4px 0 #2a0400,
+    0 0 12px rgba(255,120,30,0.22);
+  transition: transform .2s ease, box-shadow .2s ease;
+  color: #ffe88a;
+  text-decoration: none;
+  cursor: pointer;
+}
+.vd-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,200,90,0.45);
+  pointer-events: none;
+  border-radius: 1px;
+}
+.vd-card > * { position: relative; z-index: 1; }
+.vd-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 24px rgba(255,170,60,0.45),
+    0 6px 0 #2a0400,
+    0 0 20px rgba(255,120,30,0.5);
+}
+
+.vd-card-tag {
+  display: inline-block;
+  padding: 3px 12px;
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #ffe88a;
+  background: linear-gradient(180deg, rgba(184,36,12,0.6), rgba(60,8,4,0.7));
+  border: 1px solid #ffb84a;
+  border-radius: 2px;
+  margin-bottom: 18px;
+}
+.vd-card-initials {
+  font-family: "Reggae One", "Bangers", "Impact", sans-serif;
+  font-size: 72px;
+  letter-spacing: 6px;
+  line-height: 1;
+  margin: 4px 0 10px;
+  background: linear-gradient(180deg, #ffe88a 0%, #ff9a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow( 2px  2px 0 #2a0000)
+    drop-shadow(-2px -2px 0 #2a0000);
+}
+.vd-card-meta {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #ffd54a;
+  margin-bottom: 18px;
+}
+.vd-card-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-family: "Reggae One", "Bangers", sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #ffe88a;
+  background: linear-gradient(180deg, #b8240c, #5a0c04);
+  border: 1.5px solid #ffb84a;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 12px rgba(255,170,60,0.35),
+    0 3px 0 #2a0400;
+  transition: all .2s;
+}
+.vd-card-play-icon { font-size: 11px; }
+.vd-card:hover .vd-card-play {
+  background: linear-gradient(180deg, #d83218, #7a1408);
+  color: #fff;
+  box-shadow:
+    inset 0 0 16px rgba(255,200,90,0.5),
+    0 4px 0 #2a0400,
+    0 0 14px rgba(255,140,40,0.6);
+}
+
+/* ============ CTA (interview と同型) ============ */
+.vd-cta {
+  max-width: 900px;
+  margin: 80px auto 60px;
+  padding: 56px 24px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(255,120,30,0.18) 0%, transparent 70%);
+  border-top: 1.5px solid rgba(255,184,74,0.4);
+  border-bottom: 1.5px solid rgba(255,184,74,0.4);
+}
+.vd-cta-title {
+  font-family: "Reggae One", "Noto Serif JP", serif;
+  font-size: clamp(20px, 2.6vw, 28px);
+  letter-spacing: 3px;
+  color: #ffe88a;
+  margin: 0 0 12px;
+  filter:
+    drop-shadow( 1px  1px 0 #2a0000)
+    drop-shadow(-1px -1px 0 #2a0000);
+}
+.vd-cta-lead {
+  font-size: 14px;
+  color: #f3d68f;
+  margin: 0 0 28px;
+  letter-spacing: 1px;
+}
+.vd-cta-buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+/* ============ モバイル微調整 ============ */
+@media (max-width: 640px) {
+  .vd-list { padding: 0 16px; }
+  .vd-list-head { gap: 10px; flex-wrap: wrap; }
+  .vd-list-no { font-size: 36px; }
+  .vd-list-title { font-size: 20px; letter-spacing: 3px; }
+  .vd-list-sub { margin-left: 0; width: 100%; }
+  .vd-card { min-height: 200px; padding: 28px 20px 22px; }
+  .vd-card-initials { font-size: 56px; letter-spacing: 4px; }
+}
