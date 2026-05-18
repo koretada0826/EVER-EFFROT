@@ -376,7 +376,7 @@ topJumpHero?.addEventListener("click", scrollTop);
   const startAuto = () => {
     stopAuto();
     if (isMobile()) return;
-    autoTimer = setInterval(() => go(1), 1600);
+    autoTimer = setInterval(() => go(1), 4500);
   };
   const stopAuto = () => {
     if (autoTimer) clearInterval(autoTimer);
