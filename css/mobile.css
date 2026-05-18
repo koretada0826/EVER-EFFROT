@@ -943,6 +943,13 @@
   .vnav a { padding: 12px 14px; min-height: 50px; }
   .brand-logo { max-width: 160px; }
   .vertical-copy { font-size: 18px; letter-spacing: 1.5px; left: 12px; top: 12px; }
+  /* hero-catch は基底で !important 付き(24px)なので、ここでも !important で
+     縮める必要がある。MENUボタンと衝突しないよう余白を確保 */
+  .vertical-copy.hero-catch {
+    font-size: 18px !important;
+    letter-spacing: 1.5px !important;
+    max-width: calc(100vw - 150px);
+  }
   .stage-center { min-height: 54vh; height: 54vh; padding-bottom: 0; }
   .hero-image { max-width: 78%; max-height: 42vh; margin-top: 36px; margin-bottom: -8px; }
   /* .side-right は relative フロー配置のため top 上書きは不要 */
