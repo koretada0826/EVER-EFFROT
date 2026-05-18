@@ -153,8 +153,6 @@
   const fixWidths = () => {
     if (!isMobile()) {
       // PC/タブレット幅に戻ったら inline スタイルを除去
-      // html/body にも焼き付いた width:Npx !important が残っていると iPad などで
-      // ページが 430px 等のモバイル幅に潰れたまま固まるので明示的にクリアする
       ["width", "max-width", "min-width"].forEach(prop => {
         document.documentElement.style.removeProperty(prop);
         document.body.style.removeProperty(prop);
@@ -178,12 +176,16 @@
     console.log("[fix-widths] vw=", vw, "innerW=", innerW,
       "html.clientWidth=", document.documentElement.clientWidth,
       "body.clientWidth=", document.body.clientWidth);
-    // 念のため html/body も明示的に viewport 幅へ
-    document.documentElement.style.setProperty("width", `${vw}px`, "important");
-    document.documentElement.style.setProperty("max-width", `${vw}px`, "important");
-    document.body.style.setProperty("width", `${vw}px`, "important");
-    document.body.style.setProperty("max-width", `${vw}px`, "important");
-    document.body.style.setProperty("min-width", `${vw}px`, "important");
+    // html/body は固定 pixel ではなく 100vw に揃える。
+    // 固定 pixel だと一度焼き付いた幅(例: 430px)が、別デバイス幅(例: iPhone SE 375)に
+    // 切り替わった際に書き換わらず残ることがあり、横スクロールや余白の原因になる。
+    // 100vw なら viewport 変化に自動追従する。
+    document.documentElement.style.removeProperty("width");
+    document.documentElement.style.removeProperty("min-width");
+    document.documentElement.style.setProperty("max-width", "100vw", "important");
+    document.body.style.removeProperty("width");
+    document.body.style.removeProperty("min-width");
+    document.body.style.setProperty("max-width", "100vw", "important");
     document.body.style.setProperty("margin", "0", "important");
     document.body.style.setProperty("padding", "0", "important");
     // セクションは viewport 幅
