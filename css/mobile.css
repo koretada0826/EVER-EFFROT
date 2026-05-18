@@ -323,19 +323,9 @@
     white-space: nowrap !important;
   }
   .vertical-copy.hero-catch .vline { white-space: nowrap !important; }
-  /* モバイル: マスコット紹介はカルーセル直上に表示（キャラ足元〜やや上） */
-  .mascot-intro {
-    position: absolute !important;
-    left: 50% !important;
-    transform: translateX(-50%) rotate(-3deg) !important;
-    bottom: 145px !important;
-    top: auto !important;
-    align-items: center !important;
-    z-index: 12 !important;
-    pointer-events: none !important;
-  }
-  .mascot-intro-title { font-size: 10px !important; padding: 3px 10px !important; letter-spacing: 1.5px !important; }
-  .mascot-intro-name { font-size: 22px !important; letter-spacing: 3px !important; }
+  /* モバイル: マスコット紹介ラベルはキャラ画像と被るので非表示
+     (キャラの識別性は img の alt 属性とカルーセルで担保) */
+  .mascot-intro { display: none !important; }
   .vertical-copy .vline { display: block; }
   /* モバイルは横書きなので「…」の回転を解除 */
   .vertical-copy .v-ellipsis { transform: none; display: inline; }
