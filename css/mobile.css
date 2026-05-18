@@ -318,9 +318,12 @@
     z-index: 3;
   }
   .vertical-copy.hero-catch {
-    font-size: 24px !important;
-    letter-spacing: 2px !important;
+    /* viewport幅に応じて連続的にスケール: 320px→16px, 430px→24px */
+    font-size: clamp(15px, 5.4vw, 24px) !important;
+    letter-spacing: clamp(0.8px, 0.4vw, 2px) !important;
     white-space: nowrap !important;
+    /* MENUボタン(右側 min-width 108-120px + 余白)に侵入しないよう左半分に制限 */
+    max-width: calc(100vw - 150px);
   }
   .vertical-copy.hero-catch .vline { white-space: nowrap !important; }
   /* モバイル: マスコット紹介ラベルはキャラ画像と被るので非表示
@@ -943,13 +946,8 @@
   .vnav a { padding: 12px 14px; min-height: 50px; }
   .brand-logo { max-width: 160px; }
   .vertical-copy { font-size: 18px; letter-spacing: 1.5px; left: 12px; top: 12px; }
-  /* hero-catch は基底で !important 付き(24px)なので、ここでも !important で
-     縮める必要がある。MENUボタンと衝突しないよう余白を確保 */
-  .vertical-copy.hero-catch {
-    font-size: 18px !important;
-    letter-spacing: 1.5px !important;
-    max-width: calc(100vw - 150px);
-  }
+  /* hero-catch のサイズ調整は基底側で clamp() による連続スケールに移行済みなので、
+     このブレイクポイントでは追加上書きしない */
   .stage-center { min-height: 54vh; height: 54vh; padding-bottom: 0; }
   .hero-image { max-width: 78%; max-height: 42vh; margin-top: 36px; margin-bottom: -8px; }
   /* .side-right は relative フロー配置のため top 上書きは不要 */
