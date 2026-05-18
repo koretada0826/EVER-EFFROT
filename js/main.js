@@ -152,7 +152,16 @@
 
   const fixWidths = () => {
     if (!isMobile()) {
-      // PC に戻ったら inline スタイルを除去
+      // PC/タブレット幅に戻ったら inline スタイルを除去
+      // html/body にも焼き付いた width:Npx !important が残っていると iPad などで
+      // ページが 430px 等のモバイル幅に潰れたまま固まるので明示的にクリアする
+      ["width", "max-width", "min-width"].forEach(prop => {
+        document.documentElement.style.removeProperty(prop);
+        document.body.style.removeProperty(prop);
+      });
+      ["margin", "padding"].forEach(prop => {
+        document.body.style.removeProperty(prop);
+      });
       SECTION_SELECTORS.concat(INNER_SELECTORS).concat(CARD_SELECTORS).forEach(sel => {
         document.querySelectorAll(sel).forEach(el => {
           el.style.removeProperty("width");
