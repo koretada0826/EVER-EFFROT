@@ -418,13 +418,9 @@ topJumpHero?.addEventListener("click", scrollTop);
     });
   });
 
-  // バナーホバーで中央へ自動回転 (PCのみ)
-  banners.forEach((b, i) => {
-    b.addEventListener("mouseenter", () => {
-      if (isMobile()) return;
-      rotateToCenter(i);
-    });
-  });
+  // ホバーで中央回転していたが、クリックしたいバナーが移動してしまい
+  // 使いづらいとの指摘があったため削除。クリックは全位置で有効。
+  // 自動回転は mouseenter で停止する挙動は viewport listener に残してある。
 
   computeStep();
   renderAll();
