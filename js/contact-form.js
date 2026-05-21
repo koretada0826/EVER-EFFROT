@@ -1,16 +1,15 @@
 /* ==========================================================
-   お問い合わせフォーム: Web3Forms 経由でメール送信
+   お問い合わせフォーム: FormSubmit.co 経由でメール送信
    送信先: Ever_CEOsoffice@e-effort.net
-   ※ ACCESS_KEY を Web3Forms から取得した実キーに差し替えること
+   - 登録不要 / APIキー不要 / 完全無料
+   - 初回送信時のみ受信箱に届く「Activate」リンクを1回クリック
+     して有効化が必要(spam防止のため業界標準仕様)
    ========================================================== */
 (() => {
   "use strict";
 
-  // ▼▼▼ Web3Forms のアクセスキーをここに貼り付ける ▼▼▼
-  const ACCESS_KEY = "REPLACE_WITH_WEB3FORMS_ACCESS_KEY";
-  // ▲▲▲ 差し替えるのはここだけ ▲▲▲
-
-  const ENDPOINT = "https://api.web3forms.com/submit";
+  const TO = "Ever_CEOsoffice@e-effort.net";
+  const ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(TO);
 
   const form = document.querySelector(".cf-form");
   if (!form) return;
@@ -80,59 +79,19 @@
       return;
     }
 
-    if (!ACCESS_KEY || ACCESS_KEY.startsWith("REPLACE_")) {
-      showError(
-        "送信機能のセットアップが完了していません。サイト管理者にご連絡ください。"
-      );
-      return;
-    }
-
     const data = new FormData(form);
     const inquiryType = labelOf(data.get("inquiry_type"), INQUIRY_LABELS);
     const contactMethod = labelOf(data.get("contact_method"), METHOD_LABELS);
-
     const subject = `【お問い合わせ】${orHyphen(data.get("subject"))} (${inquiryType})`;
 
-    const messageBody = [
-      "■お問い合わせ種別",
-      inquiryType,
-      "",
-      "■お名前",
-      orHyphen(data.get("name")),
-      "",
-      "■フリガナ",
-      orHyphen(data.get("kana")),
-      "",
-      "■会社名 / 団体名",
-      orHyphen(data.get("company")),
-      "",
-      "■部署 / 役職",
-      orHyphen(data.get("department")),
-      "",
-      "■メールアドレス",
-      orHyphen(data.get("email")),
-      "",
-      "■電話番号",
-      orHyphen(data.get("phone")),
-      "",
-      "■ご希望の連絡方法",
-      contactMethod,
-      "",
-      "■件名",
-      orHyphen(data.get("subject")),
-      "",
-      "■お問い合わせ内容",
-      orHyphen(data.get("message")),
-      "",
-      "----",
-      "本メールは EVER EFFORT 公式サイトの問い合わせフォームから送信されました。",
-    ].join("\n");
-
+    // FormSubmit に送るペイロード
+    // _xxx で始まるフィールドは FormSubmit の制御パラメータ
     const payload = {
-      access_key: ACCESS_KEY,
-      from_name: "EVER EFFORT お問い合わせフォーム",
-      subject,
-      // 件名・本文に加えて、各フィールドも個別に送る(ダッシュボードで一覧しやすい)
+      _subject: subject,
+      _template: "table",  // メール本文を整形した表形式に
+      _captcha: "false",   // AJAX送信なので reCAPTCHA は不要
+      _replyto: data.get("email") || "",  // 返信先をフォーム入力メアドに
+      // 表示順を制御するため、日本語ラベルで並べる
       お問い合わせ種別: inquiryType,
       お名前: orHyphen(data.get("name")),
       フリガナ: orHyphen(data.get("kana")),
@@ -143,11 +102,6 @@
       ご希望の連絡方法: contactMethod,
       件名: orHyphen(data.get("subject")),
       お問い合わせ内容: orHyphen(data.get("message")),
-      message: messageBody,
-      // 返信メールの reply-to をフォームで入力されたメアドにする
-      replyto: data.get("email") || "",
-      // Botフィルタ用
-      botcheck: "",
     };
 
     // 送信中UI
@@ -166,7 +120,8 @@
         body: JSON.stringify(payload),
       });
       const json = await res.json().catch(() => ({}));
-      if (res.ok && json.success) {
+      // FormSubmit は success: "true" (文字列) を返す
+      if (res.ok && (json.success === true || json.success === "true")) {
         showSuccess();
       } else {
         throw new Error(json.message || "送信に失敗しました");
